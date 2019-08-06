@@ -85,8 +85,8 @@
     "relativePath": "Scenes\\SelectCategoryScene.fire"
   },
   "3512eb35-036e-48c3-b366-8257575e5ee1": {
-    "asset": 1565132808526,
-    "meta": 1565132808563,
+    "asset": 1565134204425,
+    "meta": 1565134204456,
     "relativePath": "Scenes\\SelectStageScene.fire"
   },
   "f9a5077c-b367-40cd-80ac-21bd31c6dea2": {
@@ -689,11 +689,6 @@
     "meta": 1565131980560,
     "relativePath": "Images\\stage\\stage-002-grey.png"
   },
-  "f4897bb8-9611-4578-b323-b50567d6501b": {
-    "asset": 1565129916477,
-    "meta": 1565131980593,
-    "relativePath": "Images\\stage\\stage-002-s.png"
-  },
   "f68d63a7-b73e-44b3-b435-bf4c3dc023d2": {
     "asset": 1562353480227,
     "meta": 1565131980730,
@@ -705,8 +700,18 @@
     "relativePath": "Images\\control\\lock.jpg"
   },
   "d39893dc-a474-4732-bd1a-0c614cbfe0dc": {
-    "asset": 1565132298124,
-    "meta": 1565132298176,
+    "asset": 1565134044143,
+    "meta": 1565134044182,
     "relativePath": "Prefabs\\stagePreview.prefab"
+  },
+  "fca416c7-3158-4dcd-b1eb-07931d14edfd": {
+    "asset": 1565133751990,
+    "meta": 1565133833551,
+    "relativePath": "Images\\control\\frame.png"
+  },
+  "f4897bb8-9611-4578-b323-b50567d6501b": {
+    "asset": 1565133819018,
+    "meta": 1565133833567,
+    "relativePath": "Images\\stage\\stage-002-s.png"
   }
 }
