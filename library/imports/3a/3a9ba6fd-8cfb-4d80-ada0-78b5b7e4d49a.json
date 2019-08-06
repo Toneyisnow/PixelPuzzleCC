@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hint-panel-4x5",
+    "texture": "16b7503b-726d-4d6d-bd5b-921edc5632a3",
+    "atlas": "",
+    "rect": [
+      16,
+      14,
+      826,
+      413
+    ],
+    "offset": [
+      -3,
+      3.5
+    ],
+    "originalSize": [
+      864,
+      448
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
