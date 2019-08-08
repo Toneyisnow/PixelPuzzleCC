@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "puzzle-panel-small-empty",
+    "texture": "1d5d5668-dc9b-4f03-b15e-baf802544dae",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      820,
+      1080
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      820,
+      1080
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

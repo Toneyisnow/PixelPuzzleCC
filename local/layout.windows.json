@@ -6,8 +6,8 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 54,
-      "y": 0,
+      "x": 43,
+      "y": 4,
       "width": 1830,
       "height": 1144,
       "layout": {
@@ -21,7 +21,7 @@
                 ],
                 "height": 525,
                 "type": "panel",
-                "width": 293
+                "width": 287
               },
               {
                 "active": 0,
@@ -30,12 +30,12 @@
                 ],
                 "height": 498,
                 "type": "panel",
-                "width": 293
+                "width": 287
               }
             ],
             "height": 1025,
             "type": "dock-v",
-            "width": 293
+            "width": 287
           },
           {
             "children": [
@@ -48,7 +48,7 @@
                     ],
                     "height": 743,
                     "type": "panel",
-                    "width": 728
+                    "width": 732
                   },
                   {
                     "active": 0,
@@ -57,12 +57,12 @@
                     ],
                     "height": 743,
                     "type": "panel",
-                    "width": 396
+                    "width": 398
                   }
                 ],
                 "height": 743,
                 "type": "dock-h",
-                "width": 1126
+                "width": 1132
               },
               {
                 "active": 0,
@@ -73,12 +73,12 @@
                 ],
                 "height": 280,
                 "type": "panel",
-                "width": 1126
+                "width": 1132
               }
             ],
             "height": 1025,
             "type": "dock-v",
-            "width": 1126
+            "width": 1132
           },
           {
             "active": 0,
@@ -105,12 +105,12 @@
         "scene"
       ]
     },
-    "window-1565134251217": {}
+    "window-1565220447893": {}
   },
   "panels": {
     "builder": {
-      "x": 627,
-      "y": 200,
+      "x": 592,
+      "y": 173,
       "width": 670,
       "height": 739
     },
@@ -125,6 +125,12 @@
       "y": 150,
       "width": 520,
       "height": 839
+    },
+    "sprite-editor": {
+      "x": 702,
+      "y": 300,
+      "width": 516,
+      "height": 539
     }
   }
 }
