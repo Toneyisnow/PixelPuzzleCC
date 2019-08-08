@@ -24,6 +24,11 @@ cc.Class({
             type: cc.Canvas,
         },
         
+        testSprite: {
+            default: null,
+            type: cc.Sprite,
+        },
+        
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -47,11 +52,19 @@ cc.Class({
         
         this.buttonStart.node.on("click", this.onStartClicked, this);
         
+        var self = this;
+
+        cc.loader.loadRes("characters/chars_fzlb", cc.SpriteAtlas, function (err, atlas) {
+            
+            var frame = atlas.getSpriteFrame('c_7eb7');
+            self.testSprite.spriteFrame = frame;
+        });
         
     },
 
     start () {
 
+        
     },
     
     

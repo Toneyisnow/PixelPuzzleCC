@@ -60,6 +60,18 @@ var GlobalStorage = function () {
 
             cc.sys.localStorage.removeItem(key);
         }
+    }, {
+        key: 'loadCharacterSpriteFrame',
+        value: function loadCharacterSpriteFrame(characterId, onLoadedCallback) {
+
+            console.log('loadCharacterSpriteFrame: characterId = ', characterId);
+            cc.loader.loadRes("characters/chars_fzlb", cc.SpriteAtlas, function (err, atlas) {
+
+                var frame = atlas.getSpriteFrame('c_' + characterId);
+
+                onLoadedCallback(frame);
+            });
+        }
     }]);
 
     return GlobalStorage;

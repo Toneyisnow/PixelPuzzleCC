@@ -8,6 +8,7 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
+require('GlobalStorage');
 require('StageRecord');
 
 cc.Class({
@@ -76,6 +77,7 @@ cc.Class({
     createStagePreviews: function () {
         
         var record = new cc.StageRecord();
+        record.stageId = 101;
         
         for (var i = 0; i < 9; ++i) {
             var previewNode = cc.instantiate(this.stagePreviewPrefab);
@@ -84,11 +86,10 @@ cc.Class({
             previewNode.position = cc.v2(0, 0);
             previewNode.opacity = 0;
             
-            previewNode.on("click", this.onPreviewNodeClicked, this);
+            previewNode.on("onSelected", this.onPreviewNodeSelected, this);
             
-            var previewRenderer = previewNode.getComponent('StagePreviewPrefab');
-            previewRenderer.init(i, record);
-            previewRenderer.callbackHandler = this;
+            var previewRenderer = previewNode.getComponent('StagePreviewRenderer');
+            previewRenderer.init(101, record);
             
             this.stagePreviewNodes.push(previewNode);
             
@@ -96,8 +97,11 @@ cc.Class({
         }
     },
 
-    onPreviewNodeClicked: function(node) {
+    onPreviewNodeSelected: function(stageId) {
         
+        console.log('onPreviewNodeSelected: ', stageId);
+        
+        cc.GlobalStorage.saveIntermediateValue("selectedStageId", stageId);
         cc.director.loadScene("MainGameScene");
     },
 

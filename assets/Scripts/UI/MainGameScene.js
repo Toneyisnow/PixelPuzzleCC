@@ -8,6 +8,10 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
+require('GlobalStorage');
+require('StageDefinition');
+
+
 cc.Class({
     extends: cc.Component,
 
@@ -48,6 +52,12 @@ cc.Class({
             type: cc.Button,
         },
         
+        stageId: 0,
+        
+        stageDefinition: {
+            default: null,
+            type: cc.StageDefinition,
+        },
         
         // foo: {
         //     // ATTRIBUTES:
@@ -68,24 +78,50 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    init: function(stageId) {
-    
-        
-    },
-
-
     onLoad () {
         
-        var poemBoardNode = cc.instantiate(this.poemBoard_2_7);
-        this.anchorPoemBoard.addChild(poemBoardNode);
-        
-        var puzzleBoardNode = cc.instantiate(this.puzzleBoard_Small);
-        this.anchorPuzzleBoard.addChild(puzzleBoardNode);
+        this.stageId = cc.GlobalStorage.loadIntermediateValue("selectedStageId");
         
         this.btnBack.node.on("click", this.onBackToScene, this);
         this.btnRestart.node.on("click", this.onRefresh, this);
         
         
+        console.log('onLoad: got selectedStageId', this.stageId);
+        cc.StageDefinition.loadFromJson(this.stageId, this.onLoadWithDefinition, this);
+        
+    },
+
+    onLoadWithDefinition: function(self, definition) {
+        
+        
+        console.log('onLoadWithDefinition');
+        
+        self.stageDefinition = definition;
+            
+        if (!self.stageDefinition) {
+            console.log('stageDefinition is null.');
+            return;
+        }
+        
+        console.log('stageDefinition: ', JSON.stringify(self.stageDefinition.poem));
+        
+        // Add PoemBoard on the top
+        var poemDefinition = self.stageDefinition.poem;
+        if (!poemDefinition) {
+            console.log('poemDefinition is null.');
+            return;
+        }
+        
+        var poemBoardNode = cc.instantiate(self.poemBoard_2_5);
+        var poemBoardRenderer = poemBoardNode.getComponent('PoemBoardRenderer');
+        poemBoardRenderer.init(poemDefinition);
+        
+        self.anchorPoemBoard.addChild(poemBoardNode);
+        
+        
+        // Add PuzzleBoard on the middle
+        var puzzleBoardNode = cc.instantiate(self.puzzleBoard_Small);
+        self.anchorPuzzleBoard.addChild(puzzleBoardNode);
     },
 
     start () {

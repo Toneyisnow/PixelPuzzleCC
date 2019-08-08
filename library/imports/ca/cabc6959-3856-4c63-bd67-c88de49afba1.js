@@ -1,8 +1,8 @@
 "use strict";
-cc._RF.push(module, 'cabc6lZOFZMY71nyI3kmvuh', 'PoemBoard');
-// Scripts/UI/Controls/PoemBoard.js
+cc._RF.push(module, 'cabc6lZOFZMY71nyI3kmvuh', 'PoemBoardRenderer');
+// Scripts/UI/Controls/PoemBoardRenderer.js
 
-"use strict";
+'use strict';
 
 // Learn cc.Class:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
@@ -14,6 +14,9 @@ cc._RF.push(module, 'cabc6lZOFZMY71nyI3kmvuh', 'PoemBoard');
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
+require('PoemDefinition');
+require('GlobalStorage');
+
 cc.Class({
     extends: cc.Component,
 
@@ -21,7 +24,21 @@ cc.Class({
 
         boardWidth: 1,
 
-        boardHeight: 1
+        boardHeight: 1,
+
+        poemId: 0,
+
+        poemDefinition: {
+            default: null,
+            type: cc.PoemDefinition
+        },
+
+        characterAnchors: {
+            default: [],
+            type: cc.Node
+        },
+
+        poemBoardPrefab: cc.Prefab
 
         // foo: {
         //     // ATTRIBUTES:
@@ -42,8 +59,48 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    init: function init(poemDef) {
 
+        console.log('PoemBoard init.');
+
+        this.poemDefinition = new cc.PoemDefinition();
+        Object.assign(this.poemDefinition, poemDef);
+    },
+
+    onLoad: function onLoad() {
+
+        if (!this.poemDefinition) {
+
+            console.log('poemDefinition is null.');
+            return;
+        }
+
+        var self = this;
+
+        var lineCount = 2;
+        //let lineCount = this.poemDefinition.line_count;
+        var columnCount = this.poemDefinition.column_count;
+
+        console.log('onLoad: loading PoemDefinitions. Totallength: ', lineCount, columnCount);
+        for (var i = 0; i < lineCount; ++i) {
+            for (var j = 0; j < columnCount; ++j) {
+
+                var characterId = this.poemDefinition.content[i][j];
+                cc.GlobalStorage.loadCharacterSpriteFrame(characterId, function (characterSpriteFrame) {
+
+                    var node = new cc.Node();
+                    var charSprite = node.addComponent(cc.Sprite);
+                    charSprite.SpriteFrame = characterSpriteFrame;
+
+                    var anchor = self.characterAnchors[i * lineCount + j];
+                    console.log('anchor position:', anchor.position);
+
+                    anchor.addChild(node);
+                    node.position = cc.v2(0, 0);
+                });
+            }
+        }
+    },
     start: function start() {}
 }
 

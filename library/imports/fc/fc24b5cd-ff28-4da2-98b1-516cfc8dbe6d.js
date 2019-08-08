@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, 'fc24bXN/yhNopixUWz8jb5t', 'StagePreviewPrefab');
-// Scripts/UI/StagePreviewPrefab.js
+cc._RF.push(module, 'fc24bXN/yhNopixUWz8jb5t', 'StagePreviewRenderer');
+// Scripts/UI/Controls/StagePreviewRenderer.js
 
 'use strict';
 
@@ -19,8 +19,6 @@ require('StageRecord');
 cc.Class({
     extends: cc.Component,
 
-    stage_id: 0,
-
     properties: {
 
         stageRecord: {
@@ -28,25 +26,22 @@ cc.Class({
             type: cc.StageRecord
         },
 
-        callbackHandler: {
-            default: null,
-            type: cc.Component
-        },
-
         touchNode: {
             default: null,
             type: cc.Node
-        }
+        },
+
+        stageId: 0
     },
 
     // LIFE-CYCLE CALLBACKS:
     init: function init(stageId, stageRecord) {
 
-        this.stage_id = stageId;
+        this.stageId = stageId;
 
         this.stageRecord = stageRecord;
 
-        this.touchNode.on('touchend', this.onTouchUp, this);
+        this.touchNode.on('touchend', this.onTouchEnd, this);
     },
 
     onLoad: function onLoad() {},
@@ -56,15 +51,17 @@ cc.Class({
     },
 
 
-    onTouchUp: function onTouchUp(caller) {
+    onTouchEnd: function onTouchEnd(caller) {
 
-        console.log('onTouchUp');
+        console.log('onTouchEnd');
 
-        if (this.callbackHandler) {
+        this.node.emit('onSelected', this.stageId);
 
-            console.log('callbackHandler.onPreviewNodeClicked');
-            this.callbackHandler.onPreviewNodeClicked(this.node);
-        }
+        //if (this.callbackHandler) {
+
+        //    console.log('callbackHandler.onPreviewNodeClicked');
+        //    this.callbackHandler.onPreviewNodeClicked(this.node);
+        //}
     }
 
     // update (dt) {},
