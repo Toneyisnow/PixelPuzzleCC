@@ -22,13 +22,13 @@ cc.Class({
 
     properties: {
 
-        poemBoard_2_5: cc.Prefab,
+        hintBoard_2_5: cc.Prefab,
 
-        poemBoard_2_7: cc.Prefab,
+        hintBoard_2_7: cc.Prefab,
 
-        poemBoard_4_5: cc.Prefab,
+        hintBoard_4_5: cc.Prefab,
 
-        poemBoard_4_7: cc.Prefab,
+        hintBoard_4_7: cc.Prefab,
 
         puzzleBoard_Tiny: cc.Prefab,
 
@@ -36,7 +36,7 @@ cc.Class({
 
         puzzleBoard_Medium: cc.Prefab,
 
-        anchorPoemBoard: {
+        anchorHintBoard: {
             default: null,
             type: cc.Node
         },
@@ -90,7 +90,7 @@ cc.Class({
         this.btnRestart.node.on("click", this.onRefresh, this);
 
         console.log('onLoad: got selectedStageId', this.stageId);
-        cc.StageDefinition.loadFromJson(this.stageId, this.onLoadWithDefinition, this);
+        cc.StageDefinition.loadFromFile(this.stageId, this.onLoadWithDefinition, this);
     },
 
 
@@ -105,23 +105,26 @@ cc.Class({
             return;
         }
 
-        console.log('stageDefinition: ', JSON.stringify(self.stageDefinition.poem));
+        console.log('stageDefinition: ', JSON.stringify(self.stageDefinition.poemDefinition));
 
         // Add PoemBoard on the top
-        var poemDefinition = self.stageDefinition.poem;
+        var poemDefinition = self.stageDefinition.poemDefinition;
         if (!poemDefinition) {
             console.log('poemDefinition is null.');
             return;
         }
 
-        var poemBoardNode = cc.instantiate(self.poemBoard_2_5);
-        var poemBoardRenderer = poemBoardNode.getComponent('PoemBoardRenderer');
-        poemBoardRenderer.init(poemDefinition);
+        var hintBoardNode = cc.instantiate(self.hintBoard_2_5);
+        var hintBoardRenderer = hintBoardNode.getComponent('HintBoardRenderer');
+        hintBoardRenderer.init(self.stageDefinition);
 
-        self.anchorPoemBoard.addChild(poemBoardNode);
+        self.anchorHintBoard.addChild(hintBoardNode);
 
         // Add PuzzleBoard on the middle
         var puzzleBoardNode = cc.instantiate(self.puzzleBoard_Small);
+        var puzzleBoardNodeRenderer = puzzleBoardNode.getComponent('PuzzleBoardRenderer');
+        puzzleBoardNodeRenderer.init(self.stageDefinition);
+
         self.anchorPuzzleBoard.addChild(puzzleBoardNode);
     },
 

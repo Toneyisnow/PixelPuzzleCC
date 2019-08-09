@@ -19,6 +19,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 require('PoemDefinition');
+require('PuzzleDefinition');
+require('FormulaDefinition');
 
 var StageDefinition = function () {
     function StageDefinition() {
@@ -26,48 +28,58 @@ var StageDefinition = function () {
 
         this.stageId = 0;
 
-        this.poem = new cc.PoemDefinition();
+        this.poemDefinition = undefined;
+
+        this.puzzleDefinition = undefined;
+
+        this.formulaDefinitions = [];
     }
 
     // Load definition from JSON file
 
 
-    _createClass(StageDefinition, [{
-        key: 'totalLength',
-        value: function totalLength() {
-
-            return this.contentCharArray.length;
-        }
-    }, {
-        key: 'getPoem',
-        value: function getPoem() {
-
-            return this.poem;
-        }
-    }], [{
-        key: 'loadFromJson',
-        value: function loadFromJson(stageId, callback, caller) {
+    _createClass(StageDefinition, null, [{
+        key: 'loadFromFile',
+        value: function loadFromFile(stageId, callback, caller) {
 
             console.log('loadFromJson:', 'stages/stage_' + stageId);
 
             var resouceUrl = 'stages/stage_' + stageId;
             cc.loader.loadRes(resouceUrl, cc.JsonAsset, function (err, result) {
-                var target = new cc.StageDefinition();
-                target.stageId = stageId;
+                if (err) {
 
-                console.log('error:' + JSON.stringify(err));
-                console.log('load result: ' + JSON.stringify(result));
+                    console.log('StageDefinition.loadFromFile Error: ', err);
+                } else {
 
-                Object.assign(target, result.json);
+                    var stage = StageDefinition.loadFromJsonText(result.json);
+                    stage.stageId = stageId;
 
-                target.poem = new cc.PoemDefinition();
-                Object.assign(target.poem, result.json.poem);
+                    callback(caller, stage);
+                }
+
+                //Object.assign(target, result.json);
 
                 //console.log('load result poem: ' + JSON.stringify(target.poem));
                 //console.log('load result json poem: ' + JSON.stringify(result.json.poem));
-
-                callback(caller, target);
             });
+        }
+    }, {
+        key: 'loadFromJsonText',
+        value: function loadFromJsonText(jsonObject) {
+
+            var stage = new cc.StageDefinition();
+            stage.poemDefinition = cc.PoemDefinition.loadFromJsonText(jsonObject.poem);
+            stage.puzzleDefinition = cc.PuzzleDefinition.loadFromJsonText(jsonObject.puzzle);
+
+            if (jsonObject.formula) {
+                jsonObject.formula.forEach(function (itemArr, index) {
+
+                    var formula = cc.FormulaDefinition.loadFromArray(itemArr);
+                    stage.formulaDefinitions.push(formula);
+                });
+            }
+
+            return stage;
         }
     }]);
 

@@ -17,13 +17,22 @@ class PoemDefinition {
         this.title = [];
         this.author = [];
         this.content = [];
-        this.line_count = 0;
-        this.column_count = 0;
+        this.lineCount = 0;
+        this.columnCount = 0;
     }
     
-    totalLength() {
+    static loadFromJsonText(jsonObject) {
         
-        return this.content.length;
+        var poem = new cc.PoemDefinition();
+        
+        poem.id = jsonObject.id;
+        poem.title = jsonObject.title;
+        poem.author = jsonObject.author;
+        poem.content = jsonObject.content;
+        poem.lineCount = jsonObject.line_count;
+        poem.columnCount = jsonObject.column_count;
+        
+        return poem;
     }
     
     

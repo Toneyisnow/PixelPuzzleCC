@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "poemBoard_4_7",
+    "_name": "poemBoard_4_5",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -57,8 +57,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5,
-      "y": 0.5,
+      "x": 0.6,
+      "y": 0.6,
       "z": 1
     },
     "_eulerAngles": {
@@ -101,7 +101,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1032,
+      "width": 826,
       "height": 413
     },
     "_anchorPoint": {
@@ -151,7 +151,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e68c22f2-ae20-4319-b137-9afebc23d9ed"
+      "__uuid__": "3a9ba6fd-8cfb-4d80-ada0-78b5b7e4d49a"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -173,9 +173,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "3aa25aeb-22ad-4721-a3c8-1554fc0573f8"
+      "__uuid__": "408d0d1c-e769-4bf7-a1cd-1642e16c2997"
     },
-    "fileId": "77K0rdSk9M+Kzz+xsV59xZ",
+    "fileId": "35xZgRsCVMI5MLL4B8Nuf7",
     "sync": false
   },
   {
@@ -186,8 +186,37 @@
       "__id__": 1
     },
     "_enabled": true,
-    "boardWidth": 7,
+    "boardWidth": 5,
     "boardHeight": 4,
+    "poemId": 0,
+    "poemDefinition": null,
+    "puzzleDefinition": null,
+    "stageDefinition": null,
+    "characterAnchors": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "poemBoardPrefab": {
+      "__uuid__": "408d0d1c-e769-4bf7-a1cd-1642e16c2997"
+    },
     "_id": ""
   },
   {
@@ -196,9 +225,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "3aa25aeb-22ad-4721-a3c8-1554fc0573f8"
+      "__uuid__": "408d0d1c-e769-4bf7-a1cd-1642e16c2997"
     },
-    "fileId": "f6fO/TC5JK6Yg4vyOg6w+7",
+    "fileId": "b48/kuVPhJppIQ8482VZCm",
     "sync": false
   }
 ]

@@ -15,6 +15,7 @@ class GlobalStorage {
         
     }
     
+    static characterAtlas_fzlb = undefined;
     
     static saveIntermediateValue(key, value) {
         
@@ -49,14 +50,14 @@ class GlobalStorage {
         cc.sys.localStorage.removeItem(key);
     }
     
-    static loadCharacterSpriteFrame(characterId, onLoadedCallback) {
+    static loadCharacterSpriteFrame(characterId, i, j, onLoadedCallback) {
     
         console.log('loadCharacterSpriteFrame: characterId = ', characterId);
         cc.loader.loadRes("characters/chars_fzlb", cc.SpriteAtlas, function (err, atlas) {
             
             var frame = atlas.getSpriteFrame('c_' + characterId);
             
-            onLoadedCallback(frame);
+            onLoadedCallback(frame, i, j);
         });
     }
     

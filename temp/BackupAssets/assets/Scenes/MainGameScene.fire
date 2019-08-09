@@ -323,7 +323,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "anchorPoemBoard",
+    "_name": "anchorHintBoard",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -1044,16 +1044,16 @@
       "__id__": 20
     },
     "_enabled": true,
-    "poemBoard_2_5": {
+    "hintBoard_2_5": {
       "__uuid__": "a4452b3c-7551-41a3-816f-6a09dfab22b8"
     },
-    "poemBoard_2_7": {
+    "hintBoard_2_7": {
       "__uuid__": "d35ad4d2-b50e-4723-94db-1a983c8fbf5d"
     },
-    "poemBoard_4_5": {
+    "hintBoard_4_5": {
       "__uuid__": "408d0d1c-e769-4bf7-a1cd-1642e16c2997"
     },
-    "poemBoard_4_7": {
+    "hintBoard_4_7": {
       "__uuid__": "3aa25aeb-22ad-4721-a3c8-1554fc0573f8"
     },
     "puzzleBoard_Tiny": {
@@ -1065,7 +1065,7 @@
     "puzzleBoard_Medium": {
       "__uuid__": "4c744fa1-123b-4aef-a593-4063a90a7d97"
     },
-    "anchorPoemBoard": {
+    "anchorHintBoard": {
       "__id__": 7
     },
     "anchorPuzzleBoard": {
@@ -1077,6 +1077,8 @@
     "btnRestart": {
       "__id__": 18
     },
+    "stageId": 0,
+    "stageDefinition": null,
     "_id": "c0AVazFkRDnYHRDv4GOtmk"
   }
 ]

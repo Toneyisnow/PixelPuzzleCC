@@ -6,6 +6,8 @@ cc._RF.push(module, '00eb3kmF/RC2adysbINn/AI', 'GlobalStorage', __filename);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _class, _temp;
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // Learn cc.Class:
@@ -19,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 
-var GlobalStorage = function () {
+var GlobalStorage = (_temp = _class = function () {
     function GlobalStorage() {
         _classCallCheck(this, GlobalStorage);
     }
@@ -62,21 +64,20 @@ var GlobalStorage = function () {
         }
     }, {
         key: 'loadCharacterSpriteFrame',
-        value: function loadCharacterSpriteFrame(characterId, onLoadedCallback) {
+        value: function loadCharacterSpriteFrame(characterId, i, j, onLoadedCallback) {
 
             console.log('loadCharacterSpriteFrame: characterId = ', characterId);
             cc.loader.loadRes("characters/chars_fzlb", cc.SpriteAtlas, function (err, atlas) {
 
                 var frame = atlas.getSpriteFrame('c_' + characterId);
 
-                onLoadedCallback(frame);
+                onLoadedCallback(frame, i, j);
             });
         }
     }]);
 
     return GlobalStorage;
-}();
-
+}(), _class.characterAtlas_fzlb = undefined, _temp);
 ;
 
 module.exports = GlobalStorage;

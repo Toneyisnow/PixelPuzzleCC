@@ -28,11 +28,6 @@ cc.Class({
         canvas: {
             default: null,
             type: cc.Canvas
-        },
-
-        testSprite: {
-            default: null,
-            type: cc.Sprite
         }
 
         // foo: {
@@ -57,17 +52,10 @@ cc.Class({
     onLoad: function onLoad() {
 
         this.buttonStart.node.on("click", this.onStartClicked, this);
-    },
-    start: function start() {
 
         var self = this;
-
-        cc.loader.loadRes("characters/chars_fzlb", cc.SpriteAtlas, function (err, atlas) {
-
-            var frame = atlas.getSpriteFrame('c_7eb7');
-            self.testSprite.spriteFrame = frame;
-        });
     },
+    start: function start() {},
 
 
     onStartClicked: function onStartClicked() {

@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "poemBoard_2_5",
+    "_name": "hintBoard_2_5",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -107,7 +107,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "boardBackground",
+    "_name": "background",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -892,6 +892,8 @@
     "boardHeight": 2,
     "poemId": 0,
     "poemDefinition": null,
+    "puzzleDefinition": null,
+    "stageDefinition": null,
     "characterAnchors": [
       {
         "__id__": 5

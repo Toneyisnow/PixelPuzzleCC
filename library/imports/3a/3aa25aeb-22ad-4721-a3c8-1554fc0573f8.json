@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "poemBoard_4_7",
+    "_name": "hintBoard_4_7",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -188,6 +188,43 @@
     "_enabled": true,
     "boardWidth": 7,
     "boardHeight": 4,
+    "poemId": 0,
+    "poemDefinition": null,
+    "puzzleDefinition": null,
+    "stageDefinition": null,
+    "characterAnchors": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "poemBoardPrefab": {
+      "__uuid__": "3aa25aeb-22ad-4721-a3c8-1554fc0573f8"
+    },
     "_id": ""
   },
   {
