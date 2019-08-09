@@ -122,19 +122,26 @@ cc.Class({
         for (var i = 0; i < lines.length; ++i) {
             for (var j = 0; j < columnCount; ++j) {
 
-                var lineIndex = lines[i];
-                var characterId = this.poemDefinition.content[lineIndex][j];
+                var characterId = this.poemDefinition.content[lines[i]][j];
                 cc.GlobalStorage.loadCharacterSpriteFrame(characterId, i, j, function (characterSpriteFrame, ii, jj) {
 
                     var node = new cc.Node();
                     var charSprite = node.addComponent(cc.Sprite);
                     charSprite.spriteFrame = characterSpriteFrame;
 
-                    var anchor = self.characterAnchors[ii * columnCount + jj];
+                    var charIndex = lines[ii] * columnCount + jj;
+                    var anchor = self.characterAnchors[charIndex];
                     console.log('anchor position:', anchor.position.x, anchor.position.y);
 
                     anchor.addChild(node);
                     node.position = cc.v2(0, 0);
+
+                    console.log('checking uncovered for charIndex: ', charIndex);
+                    if (self.puzzleDefinition.isUncoveredChar(charIndex)) {
+                        node.opacity = 255;
+                    } else {
+                        node.opacity = 64;
+                    }
                 });
             }
         }

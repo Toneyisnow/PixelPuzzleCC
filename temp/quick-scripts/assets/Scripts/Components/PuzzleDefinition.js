@@ -30,7 +30,20 @@ var PuzzleDefinition = function () {
         this.boardSize = PuzzleBoardSize.SMALL;
     }
 
-    _createClass(PuzzleDefinition, null, [{
+    _createClass(PuzzleDefinition, [{
+        key: 'isUncoveredChar',
+        value: function isUncoveredChar(charIndex) {
+
+            console.log('uncoveredChars list:', this.uncoveredChars);
+
+            return this.uncoveredChars.some(function (cIndex) {
+
+                if (cIndex == charIndex) {
+                    return true;
+                }
+            });
+        }
+    }], [{
         key: 'loadFromJsonText',
         value: function loadFromJsonText(jsonObject) {
 

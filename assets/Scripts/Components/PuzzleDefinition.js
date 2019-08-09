@@ -33,6 +33,18 @@ class PuzzleDefinition {
         return puzzle;
     }
     
+    isUncoveredChar(charIndex) {
+        
+        console.log('uncoveredChars list:', this.uncoveredChars);
+        
+        return this.uncoveredChars.some(function(cIndex) {
+            
+            if (cIndex == charIndex) {
+                return true;
+            }
+        });
+    }
+    
 };
 
 
