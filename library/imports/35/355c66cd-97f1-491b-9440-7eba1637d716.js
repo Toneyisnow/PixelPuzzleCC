@@ -38,7 +38,20 @@ var StageDefinition = function () {
     // Load definition from JSON file
 
 
-    _createClass(StageDefinition, null, [{
+    _createClass(StageDefinition, [{
+        key: 'findFormulaDefinition',
+        value: function findFormulaDefinition(targetCharacterId) {
+
+            for (var i = 0; i < this.formulaDefinitions.length; i++) {
+
+                if (this.formulaDefinitions[i].targetCharacter == targetCharacterId) {
+                    return this.formulaDefinitions[i];
+                }
+            }
+
+            return undefined;
+        }
+    }], [{
         key: 'loadFromFile',
         value: function loadFromFile(stageId, callback, caller) {
 

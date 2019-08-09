@@ -8,33 +8,19 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-class FormulaDefinition {
+
+
+class Utils {
     
     constructor() {
-        
-        this.sourceCharacterA = "";
-        this.sourceCharacterB = "";
-        this.targetCharacter = "";
     }
     
-    static loadFromArray(arr) {
-        
-        if (arr == undefined || arr.length !== 3) {
-            
-            console.log('Formula length should be 3.');
-            return undefined;
-        }
-        
-        var definition = new FormulaDefinition();
-        
-        definition.sourceCharacterA = arr[0];
-        definition.sourceCharacterB = arr[1];
-        definition.targetCharacter = arr[2];
-        
-        return definition;
-    }
+    // This will generate integer between 0 and maxValue - 1
+    static randomInteger(maxValue) {
     
+        return Math.floor(Math.random() * maxValue);
+    }
 };
 
 
-cc.FormulaDefinition = FormulaDefinition;
+module.exports = Utils;

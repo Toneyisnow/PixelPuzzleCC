@@ -8,33 +8,27 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-class FormulaDefinition {
+var Utils = require('Utils');
+ 
+const PuzzleBoardStatus = {
+    IDLE: 0,
+    ONE_SELECTED: 1
+};
+
+
+class PuzzleBoard {
     
     constructor() {
         
-        this.sourceCharacterA = "";
-        this.sourceCharacterB = "";
-        this.targetCharacter = "";
-    }
-    
-    static loadFromArray(arr) {
+        this.width = 0;
+        this.height = 0;
         
-        if (arr == undefined || arr.length !== 3) {
-            
-            console.log('Formula length should be 3.');
-            return undefined;
-        }
+        this.characterMatrix = [];
         
-        var definition = new FormulaDefinition();
-        
-        definition.sourceCharacterA = arr[0];
-        definition.sourceCharacterB = arr[1];
-        definition.targetCharacter = arr[2];
-        
-        return definition;
+        this.boardStatus = PuzzleBoardStatus.IDLE;
+        this.lastSelectedPosition = cc.v2(-1, -1);
     }
     
 };
 
-
-cc.FormulaDefinition = FormulaDefinition;
+cc.PuzzleBoard = PuzzleBoard;

@@ -35,7 +35,7 @@ class PuzzleDefinition {
     
     isUncoveredChar(charIndex) {
         
-        console.log('uncoveredChars list:', this.uncoveredChars);
+        // console.log('uncoveredChars list:', this.uncoveredChars);
         
         return this.uncoveredChars.some(function(cIndex) {
             

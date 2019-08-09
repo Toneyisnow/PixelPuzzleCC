@@ -1,6 +1,6 @@
-"use strict";
-cc._RF.push(module, 'c574f9GMLJAa4cO8MVsig+L', 'FormulaDefinition');
-// Scripts/Components/FormulaDefinition.js
+(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/Scripts/Common/Utils.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
+cc._RF.push(module, '97ef7tr4ctKs5HSx6tgfJ78', 'Utils', __filename);
+// Scripts/Common/Utils.js
 
 "use strict";
 
@@ -18,40 +18,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-var FormulaDefinition = function () {
-    function FormulaDefinition() {
-        _classCallCheck(this, FormulaDefinition);
 
-        this.sourceCharacterA = "";
-        this.sourceCharacterB = "";
-        this.targetCharacter = "";
+var Utils = function () {
+    function Utils() {
+        _classCallCheck(this, Utils);
     }
 
-    _createClass(FormulaDefinition, null, [{
-        key: "loadFromArray",
-        value: function loadFromArray(arr) {
+    // This will generate integer between 0 and maxValue - 1
 
-            if (arr == undefined || arr.length !== 3) {
 
-                console.log('Formula length should be 3.');
-                return undefined;
-            }
+    _createClass(Utils, null, [{
+        key: "randomInteger",
+        value: function randomInteger(maxValue) {
 
-            var definition = new FormulaDefinition();
-
-            definition.sourceCharacterA = arr[0];
-            definition.sourceCharacterB = arr[1];
-            definition.targetCharacter = arr[2];
-
-            return definition;
+            return Math.floor(Math.random() * maxValue);
         }
     }]);
 
-    return FormulaDefinition;
+    return Utils;
 }();
 
 ;
 
-cc.FormulaDefinition = FormulaDefinition;
+module.exports = Utils;
 
 cc._RF.pop();
+        }
+        if (CC_EDITOR) {
+            __define(__module.exports, __require, __module);
+        }
+        else {
+            cc.registerModuleFunc(__filename, function () {
+                __define(__module.exports, __require, __module);
+            });
+        }
+        })();
+        //# sourceMappingURL=Utils.js.map
+        

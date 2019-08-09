@@ -13,6 +13,7 @@ require('GlobalStorage');
 require('PoemDefinition');
 require('StageDefinition');
 require('PuzzleDefinition');
+require('PuzzleBoardProvider');
 
 
 cc.Class({
@@ -39,13 +40,24 @@ cc.Class({
             type: cc.StageDefinition,
         },
         
-        anchors: {
-            default: [],
-            type: cc.Node
+        anchorStartPoint: {
+            default: cc.v2(0, 0),
+            type: cc.v2
         },
+        
+        anchorInterval: 64,
         
         puzzleBoardPrefab: cc.Prefab,
         
+        boardProvider: {
+            default: null,
+            type: cc.PuzzleBoardProvider,
+        },
+        
+        boardRootNode: {
+            default: null,
+            type: cc.Node,
+        },
         
         // foo: {
         //     // ATTRIBUTES:
@@ -73,10 +85,6 @@ cc.Class({
         this.stageDefinition = stageDefinition;
         this.poemDefinition = this.stageDefinition.poemDefinition;
         this.puzzleDefinition = this.stageDefinition.puzzleDefinition;
-    },
-
-
-    onLoad () {
         
         if (!this.poemDefinition || !this.puzzleDefinition) {
         
@@ -85,6 +93,46 @@ cc.Class({
         }
         
         var self = this;
+        
+        this.boardProvider = new cc.PuzzleBoardProvider();
+        this.boardProvider.createBoard(this.stageDefinition);
+        
+    },
+
+
+    onLoad () {
+        
+        var self = this;
+        
+        var size = this.boardProvider.getBoardSize();
+        for (var i = 0; i < size.x; ++i) {
+            for (var j = 0; j < size.y; ++j) {
+        
+                var characterId = this.boardProvider.getCharacterAt(i, j);
+                
+                if (characterId) {
+                    
+                    console.log('got character: ', i, j, characterId);
+                    cc.GlobalStorage.loadCharacterSpriteFrame(characterId, i, j, function(characterSpriteFrame, ii, jj) {
+        
+                    var node = new cc.Node();
+                    let charSprite = node.addComponent(cc.Sprite);
+                    charSprite.spriteFrame = characterSpriteFrame;
+                    
+                    var posX = self.anchorStartPoint.x + ii * self.anchorInterval;
+                    var posY = self.anchorStartPoint.y - jj * self.anchorInterval;
+                    
+                    //var posX = -160 + ii * 64;
+                    //var posY = 226 - jj * 64;
+                    
+                    node.position = cc.v2(posX, posY);
+                    node.scale = 0.5;
+                    
+                    self.boardRootNode.addChild(node);
+                });
+                }
+            }
+        }
         
     },
 

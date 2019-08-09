@@ -22,9 +22,9 @@ var FormulaDefinition = function () {
     function FormulaDefinition() {
         _classCallCheck(this, FormulaDefinition);
 
-        this.operatorA = "";
-        this.operatorB = "";
-        this.result = "";
+        this.sourceCharacterA = "";
+        this.sourceCharacterB = "";
+        this.targetCharacter = "";
     }
 
     _createClass(FormulaDefinition, null, [{
@@ -39,9 +39,9 @@ var FormulaDefinition = function () {
 
             var definition = new FormulaDefinition();
 
-            definition.operatorA = arr[0];
-            definition.operatorB = arr[1];
-            definition.result = arr[2];
+            definition.sourceCharacterA = arr[0];
+            definition.sourceCharacterB = arr[1];
+            definition.targetCharacter = arr[2];
 
             return definition;
         }

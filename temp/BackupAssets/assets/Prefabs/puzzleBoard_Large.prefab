@@ -188,7 +188,6 @@
     "_enabled": true,
     "boardWidth": 1,
     "boardHeight": 1,
-    "poemId": 0,
     "poemDefinition": null,
     "puzzleDefinition": null,
     "stageDefinition": null,

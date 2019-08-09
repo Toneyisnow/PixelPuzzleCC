@@ -16,6 +16,7 @@ cc._RF.push(module, 'b39e5V0pmBCe4Id0NP3DWJ8', 'MainGameScene', __filename);
 
 require('GlobalStorage');
 require('StageDefinition');
+var PuzzleBoardSize = require('Constant').PuzzleBoardSize;
 
 cc.Class({
     extends: cc.Component,
@@ -107,13 +108,6 @@ cc.Class({
 
         console.log('stageDefinition: ', JSON.stringify(self.stageDefinition.poemDefinition));
 
-        // Add PoemBoard on the top
-        var poemDefinition = self.stageDefinition.poemDefinition;
-        if (!poemDefinition) {
-            console.log('poemDefinition is null.');
-            return;
-        }
-
         var hintBoardNode = cc.instantiate(self.hintBoard_2_5);
         var hintBoardRenderer = hintBoardNode.getComponent('HintBoardRenderer');
         hintBoardRenderer.init(self.stageDefinition);
@@ -121,7 +115,29 @@ cc.Class({
         self.anchorHintBoard.addChild(hintBoardNode);
 
         // Add PuzzleBoard on the middle
-        var puzzleBoardNode = cc.instantiate(self.puzzleBoard_Small);
+        var boardPrefab = self.puzzleBoard_Tiny;
+        switch (self.stageDefinition.puzzleDefinition.boardSize) {
+
+            case PuzzleBoardSize.TINY:
+                {
+                    boardPrefab = self.puzzleBoard_Tiny;
+                    break;
+                }
+            case PuzzleBoardSize.SMALL:
+                {
+                    boardPrefab = self.puzzleBoard_Small;
+                    break;
+                }
+            case PuzzleBoardSize.MEDIUM:
+                {
+                    boardPrefab = self.puzzleBoard_Medium;
+                    break;
+                }
+            default:
+                {}
+        }
+
+        var puzzleBoardNode = cc.instantiate(boardPrefab);
         var puzzleBoardNodeRenderer = puzzleBoardNode.getComponent('PuzzleBoardRenderer');
         puzzleBoardNodeRenderer.init(self.stageDefinition);
 

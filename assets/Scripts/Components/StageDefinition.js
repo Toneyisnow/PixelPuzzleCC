@@ -70,6 +70,17 @@ class StageDefinition {
         return stage;
     }
     
+    findFormulaDefinition(targetCharacterId) {
+        
+        for (var i = 0; i < this.formulaDefinitions.length; i++) {
+            
+            if (this.formulaDefinitions[i].targetCharacter == targetCharacterId) {
+                return this.formulaDefinitions[i];
+            }
+        }
+        
+        return undefined;
+    }
 };
 
 

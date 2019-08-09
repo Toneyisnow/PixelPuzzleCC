@@ -19,17 +19,20 @@
     "_children": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 5
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 5
+        "__id__": 7
       }
     ],
     "_prefab": {
-      "__id__": 6
+      "__id__": 8
     },
     "_opacity": 255,
     "_color": {
@@ -57,8 +60,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.333,
-      "y": 0.333,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
     "_eulerAngles": {
@@ -101,8 +104,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 690,
-      "height": 820
+      "width": 410,
+      "height": 540
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -154,7 +157,7 @@
       "__uuid__": "a626d7c8-e216-4acd-a7fe-7511e169076e"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -179,6 +182,73 @@
     "sync": false
   },
   {
+    "__type__": "cc.Node",
+    "_name": "New Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 2,
+    "_components": [],
+    "_prefab": {
+      "__id__": 6
+    },
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": -154.184,
+      "y": 213.834,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "groupIndex": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "c5e8bc99-4f21-403f-8c14-d947dee4110e"
+    },
+    "fileId": "1e5Scb2r9HW6beJvrgVF4H",
+    "sync": false
+  },
+  {
     "__type__": "f29ecQlJN9ChLNEe9CYCMBZ",
     "_name": "",
     "_objFlags": 0,
@@ -186,15 +256,23 @@
       "__id__": 1
     },
     "_enabled": true,
-    "boardWidth": 1,
-    "boardHeight": 1,
-    "poemId": 0,
+    "boardWidth": 5,
+    "boardHeight": 6,
     "poemDefinition": null,
     "puzzleDefinition": null,
     "stageDefinition": null,
-    "anchors": [],
+    "anchorStartPoint": {
+      "__type__": "cc.Vec2",
+      "x": -154,
+      "y": 214
+    },
+    "anchorInterval": 72,
     "puzzleBoardPrefab": {
       "__uuid__": "c5e8bc99-4f21-403f-8c14-d947dee4110e"
+    },
+    "boardProvider": null,
+    "boardRootNode": {
+      "__id__": 1
     },
     "_id": ""
   },
