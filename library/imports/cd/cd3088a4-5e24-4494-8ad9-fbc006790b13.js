@@ -19,15 +19,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 var PuzzleBoardSize = require('Constant').PuzzleBoardSize;
+
 var Utils = require('Utils');
 require('StageDefinition');
 require('PoemDefinition');
 require('PuzzleDefinition');
 
-require('PuzzleBoard');
+var PuzzleBoard = require('PuzzleBoard');
+var PuzzleBoardStatus = PuzzleBoard.PuzzleBoardStatus;
 
 var PuzzleBoardProvider = function () {
-    function PuzzleBoardProvider() {
+    function PuzzleBoardProvider(handler) {
         _classCallCheck(this, PuzzleBoardProvider);
 
         this.board = undefined;
@@ -35,6 +37,8 @@ var PuzzleBoardProvider = function () {
         this.stageDefinition = undefined;
         this.poemDefinition = undefined;
         this.puzzleDefinition = undefined;
+
+        this.handler = handler;
     }
 
     _createClass(PuzzleBoardProvider, [{
@@ -139,18 +143,47 @@ var PuzzleBoardProvider = function () {
         key: 'takeActionAt',
         value: function takeActionAt(position) {
 
-            // TODO:
+            if (this.board.status == PuzzleBoardStatus.IDLE) {
+
+                this.board.lastSelectedPosition = position;
+                this.board.status = PuzzleBoardStatus.ONE_SELECTED;
+
+                this.handler.onChooseCharacterAt(position);
+            } else {
+
+                if (Utils.areSameVec(position, this.board.lastSelectedPosition) || !this.areCharactersMatching(position, this.board.lastSelectedPosition)) {
+
+                    this.board.status = PuzzleBoardStatus.IDLE;
+                    this.handler.onUnchooseCharacterAt(position, this.board.lastSelectedPosition);
+                    return;
+                }
+
+                this.handler.onConnected(position, this.board.lastSelectedPosition, [cc.v2(0, 0)]);
+            }
+        }
+    }, {
+        key: 'areCharactersMatching',
+        value: function areCharactersMatching(posA, posB) {
+
+            var charA = this.getCharacterAt(posA);
+            var charB = this.getCharacterAt(posB);
+
+            if (!charA || !charB) {
+                return false;
+            }
+
+            return this.stageDefinition.matchFormulaDefinition(charA, charB);
         }
     }, {
         key: 'getCharacterAt',
-        value: function getCharacterAt(x, y) {
+        value: function getCharacterAt(position) {
 
             // console.log('retrieving character at ', x, y);
 
-            if (this.board.characterMatrix[x]) {
-                return this.board.characterMatrix[x][y];
+            if (this.board.characterMatrix[position.x]) {
+                return this.board.characterMatrix[position.x][position.y];
             } else {
-                console.log('getCharacterAt error: matrix exceeded: ', x, y);
+                console.log('getCharacterAt error: matrix exceeded: ', position.x, position.y);
             }
         }
     }, {

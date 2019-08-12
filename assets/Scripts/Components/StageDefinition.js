@@ -81,6 +81,19 @@ class StageDefinition {
         
         return undefined;
     }
+    
+    matchFormulaDefinition(characterA, characterB) {
+    
+        for (var i = 0; i < this.formulaDefinitions.length; i++) {
+            
+            if (this.formulaDefinitions[i].sourceCharacterA == characterA && this.formulaDefinitions[i].sourceCharacterB == characterB
+            || this.formulaDefinitions[i].sourceCharacterB == characterA && this.formulaDefinitions[i].sourceCharacterA == characterB) {
+                return this.formulaDefinitions[i];
+            }
+        }
+        
+        return undefined;
+    }
 };
 
 

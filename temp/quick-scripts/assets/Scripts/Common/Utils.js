@@ -33,6 +33,12 @@ var Utils = function () {
 
             return Math.floor(Math.random() * maxValue);
         }
+    }, {
+        key: "areSameVec",
+        value: function areSameVec(vec1, vec2) {
+
+            return vec1 && vec2 && vec1.x == vec2.x && vec1.y == vec2.y;
+        }
     }]);
 
     return Utils;

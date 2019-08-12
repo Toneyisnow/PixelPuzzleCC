@@ -25,10 +25,17 @@ class PuzzleBoard {
         
         this.characterMatrix = [];
         
-        this.boardStatus = PuzzleBoardStatus.IDLE;
+        this.status = PuzzleBoardStatus.IDLE;
         this.lastSelectedPosition = cc.v2(-1, -1);
     }
     
+    
+    
 };
+
+module.exports = {
+	PuzzleBoardStatus: PuzzleBoardStatus
+};
+
 
 cc.PuzzleBoard = PuzzleBoard;

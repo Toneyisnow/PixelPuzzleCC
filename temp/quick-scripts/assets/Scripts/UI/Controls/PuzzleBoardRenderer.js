@@ -15,6 +15,7 @@ cc._RF.push(module, 'f29ecQlJN9ChLNEe9CYCMBZ', 'PuzzleBoardRenderer', __filename
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 require('GlobalStorage');
+var Utils = require('Utils');
 
 require('PoemDefinition');
 require('StageDefinition');
@@ -101,7 +102,7 @@ cc.Class({
 
         var self = this;
 
-        this.boardProvider = new cc.PuzzleBoardProvider();
+        this.boardProvider = new cc.PuzzleBoardProvider(this);
         this.boardProvider.createBoard(this.stageDefinition);
     },
 
@@ -113,7 +114,7 @@ cc.Class({
         for (var i = 1; i <= size.x; ++i) {
             for (var j = 1; j <= size.y; ++j) {
 
-                var characterId = this.boardProvider.getCharacterAt(i, j);
+                var characterId = this.boardProvider.getCharacterAt(cc.v2(i, j));
 
                 if (characterId) {
 
@@ -121,6 +122,8 @@ cc.Class({
                     cc.GlobalStorage.loadCharacterSpriteFrame(characterId, i, j, function (characterSpriteFrame, ii, jj) {
 
                         var node = new cc.Node();
+                        node.name = 'char_' + ii + '_' + jj;
+
                         var charSprite = node.addComponent(cc.Sprite);
                         charSprite.spriteFrame = characterSpriteFrame;
 
@@ -158,6 +161,11 @@ cc.Class({
         }
     },
     start: function start() {},
+    getNodeAtPosition: function getNodeAtPosition(position) {
+
+        var nodeName = 'char_' + position.x + '_' + position.y;
+        return this.boardRootNode.getChildByName(nodeName);
+    },
 
 
     onBoardClickedAt: function onBoardClickedAt(event, customEventData) {
@@ -176,16 +184,76 @@ cc.Class({
     },
 
     // --------------- Callbacks from Provider ---------------
-    onChooseCharacterAt: function onChooseCharacterAt(position) {},
+    onChooseCharacterAt: function onChooseCharacterAt(position) {
+
+        console.log('onChooseCharacterAt triggered.');
+
+        var node = this.getNodeAtPosition(position);
+        if (node) {
+
+            console.log('Got node on ', position.x, position.y);
+
+            // Play animation
+            node.runAction(new cc.scaleTo(0.3, 0.6));
+        }
+    },
 
     // The two characters not match, or use click the firstPosition again. Cancel them.
-    onUnchooseCharacterAt: function onUnchooseCharacterAt(position, firstPosition) {},
+    onUnchooseCharacterAt: function onUnchooseCharacterAt(position, firstPosition) {
+
+        console.log('onUnchooseCharacterAt triggered.');
+
+        var node = this.getNodeAtPosition(position);
+        if (node) {
+
+            console.log('Got node on ', position.x, position.y);
+
+            // Play animation
+            node.runAction(new cc.scaleTo(0.3, 0.5));
+        }
+
+        if (Utils.areSameVec(firstPosition, position)) {
+            return;
+        }
+
+        var firstNode = this.getNodeAtPosition(firstPosition);
+        if (firstNode) {
+
+            console.log('Got node on ', firstPosition.x, firstPosition.y);
+
+            // Play animation
+            firstNode.runAction(new cc.scaleTo(0.3, 0.5));
+        }
+    },
 
     // The two characters are matching, but not connected, so cancel them
-    onMatchNotConnected: function onMatchNotConnected(position, firstPosition) {},
+    onMatchNotConnected: function onMatchNotConnected(position, firstPosition) {
+        console.log('onMatchNotConnected triggered.');
+    },
 
     // Connect from the firstPosition through connectPoints and to the position
-    onConnected: function onConnected(position, firstPosition, connectPoints) {}
+    onConnected: function onConnected(position, firstPosition, connectPoints) {
+
+        console.log('onConnected triggered.');
+
+        var node = this.getNodeAtPosition(position);
+        if (node) {
+
+            console.log('Got node on ', position.x, position.y);
+
+            // Play animation
+            node.runAction(new cc.scaleTo(0.3, 1.0));
+        }
+
+        var firstNode = this.getNodeAtPosition(firstPosition);
+        if (firstNode) {
+
+            console.log('Got node on ', firstPosition.x, firstPosition.y);
+
+            // Play animation
+            firstNode.runAction(new cc.scaleTo(0.3, 1.0));
+        }
+    }
 
     // update (dt) {},
 });

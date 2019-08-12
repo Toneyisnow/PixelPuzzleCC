@@ -51,6 +51,19 @@ var StageDefinition = function () {
 
             return undefined;
         }
+    }, {
+        key: 'matchFormulaDefinition',
+        value: function matchFormulaDefinition(characterA, characterB) {
+
+            for (var i = 0; i < this.formulaDefinitions.length; i++) {
+
+                if (this.formulaDefinitions[i].sourceCharacterA == characterA && this.formulaDefinitions[i].sourceCharacterB == characterB || this.formulaDefinitions[i].sourceCharacterB == characterA && this.formulaDefinitions[i].sourceCharacterA == characterB) {
+                    return this.formulaDefinitions[i];
+                }
+            }
+
+            return undefined;
+        }
     }], [{
         key: 'loadFromFile',
         value: function loadFromFile(stageId, callback, caller) {
