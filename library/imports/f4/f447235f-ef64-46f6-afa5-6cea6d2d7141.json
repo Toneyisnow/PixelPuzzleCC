@@ -60,8 +60,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.85,
+      "y": 0.85,
       "z": 1
     },
     "_eulerAngles": {
@@ -183,7 +183,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Node",
+    "_name": "anchorNode",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -215,8 +215,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -96.166,
-      "y": 225.933,
+      "x": -160.003,
+      "y": 226,
       "z": 0
     },
     "_scale": {
@@ -263,10 +263,10 @@
     "stageDefinition": null,
     "anchorStartPoint": {
       "__type__": "cc.Vec2",
-      "x": -160,
-      "y": 226
+      "x": -225,
+      "y": 291
     },
-    "anchorInterval": 64,
+    "anchorInterval": 65,
     "puzzleBoardPrefab": {
       "__uuid__": "f447235f-ef64-46f6-afa5-6cea6d2d7141"
     },

@@ -117,7 +117,7 @@ var PuzzleBoardProvider = function () {
 
             //var characterMatrix = new Array(this.board.width);
             var characterMatrix = [];
-            for (var i = 0; i < this.board.width; ++i) {
+            for (var i = 0; i <= this.board.width + 1; ++i) {
 
                 //characterMatrix[i] = new Array(this.board.height);
                 characterMatrix[i] = [];
@@ -127,8 +127,8 @@ var PuzzleBoardProvider = function () {
 
                 var characterId = appearingCharacters[i];
 
-                var x = Utils.randomInteger(this.board.width);
-                var y = Utils.randomInteger(this.board.height);
+                var x = Utils.randomInteger(this.board.width) + 1;
+                var y = Utils.randomInteger(this.board.height) + 1;
 
                 characterMatrix[x][y] = characterId;
             }
@@ -137,7 +137,7 @@ var PuzzleBoardProvider = function () {
         }
     }, {
         key: 'takeActionAt',
-        value: function takeActionAt(x, y) {
+        value: function takeActionAt(position) {
 
             // TODO:
         }

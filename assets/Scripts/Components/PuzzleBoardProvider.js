@@ -104,7 +104,7 @@ class PuzzleBoardProvider {
     
         //var characterMatrix = new Array(this.board.width);
         var characterMatrix = [];
-        for (var i = 0; i < this.board.width; ++i) {
+        for (var i = 0; i <= this.board.width + 1; ++i) {
             
             //characterMatrix[i] = new Array(this.board.height);
             characterMatrix[i] = [];
@@ -114,8 +114,8 @@ class PuzzleBoardProvider {
             
             var characterId = appearingCharacters[i];
             
-            var x = Utils.randomInteger(this.board.width);
-            var y = Utils.randomInteger(this.board.height);
+            var x = Utils.randomInteger(this.board.width) + 1;
+            var y = Utils.randomInteger(this.board.height) + 1;
             
             characterMatrix[x][y] = characterId;
         }
@@ -123,9 +123,12 @@ class PuzzleBoardProvider {
         return characterMatrix;
     }
     
-    takeActionAt(x, y) {
+    takeActionAt(position) {
         
-        // TODO:
+        
+        
+        
+        
     }
     
     getCharacterAt(x, y) {
