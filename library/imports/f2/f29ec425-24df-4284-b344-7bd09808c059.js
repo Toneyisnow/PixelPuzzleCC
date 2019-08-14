@@ -213,7 +213,7 @@ cc.Class({
             console.log('Got node on ', position.x, position.y);
 
             // Play animation
-            node.runAction(new cc.scaleTo(0.2, 0.5));
+            node.runAction(cc.scaleTo(0.2, 0.5));
         }
 
         if (Utils.areSameVec(firstPosition, position)) {
@@ -226,7 +226,7 @@ cc.Class({
             console.log('Got node on ', firstPosition.x, firstPosition.y);
 
             // Play animation
-            firstNode.runAction(new cc.scaleTo(0.2, 0.5));
+            firstNode.runAction(cc.scaleTo(0.2, 0.5));
         }
     },
 
@@ -234,13 +234,20 @@ cc.Class({
     onMatchNotConnected: function onMatchNotConnected(position, firstPosition) {
         console.log('onMatchNotConnected triggered.');
 
+        var interval = 0.06;
+        var scale1 = 0.5;
+        var scale2 = 0.6;
+
+        var blinkAnimation = cc.sequence(cc.scaleTo(interval, scale1), cc.scaleTo(interval, scale2), cc.scaleTo(interval, scale1), cc.scaleTo(interval, scale2), cc.scaleTo(interval, scale1), cc.scaleTo(interval, scale2), cc.scaleTo(interval, scale1));
+        var blinkAnimation2 = cc.sequence(cc.scaleTo(interval, scale1), cc.scaleTo(interval, scale2), cc.scaleTo(interval, scale1), cc.scaleTo(interval, scale2), cc.scaleTo(interval, scale1), cc.scaleTo(interval, scale2), cc.scaleTo(interval, scale1));
+
         var node = this.getNodeAtPosition(position);
         if (node) {
 
             console.log('Got node on ', position.x, position.y);
 
             // Play animation
-            node.runAction(new cc.scaleTo(0.2, 0.5));
+            node.runAction(blinkAnimation);
         }
 
         if (Utils.areSameVec(firstPosition, position)) {
@@ -253,7 +260,7 @@ cc.Class({
             console.log('Got node on ', firstPosition.x, firstPosition.y);
 
             // Play animation
-            firstNode.runAction(new cc.scaleTo(0.2, 0.5));
+            firstNode.runAction(blinkAnimation2);
         }
     },
 

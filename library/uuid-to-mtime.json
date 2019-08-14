@@ -919,11 +919,6 @@
     "meta": 1565817469296,
     "relativePath": "Scripts\\Components\\HintBoard.js"
   },
-  "cd3088a4-5e24-4494-8ad9-fbc006790b13": {
-    "asset": 1565818959567,
-    "meta": 1565819068901,
-    "relativePath": "Scripts\\Components\\PuzzleBoardProvider.js"
-  },
   "b39e5574-a660-427b-821d-d0d3f70d627c": {
     "asset": 1565820122947,
     "meta": 1565820312674,
@@ -934,9 +929,14 @@
     "meta": 1565820545093,
     "relativePath": "Scripts\\UI\\Controls\\HintBoardRenderer.js"
   },
+  "cd3088a4-5e24-4494-8ad9-fbc006790b13": {
+    "asset": 1565821580699,
+    "meta": 1565821598612,
+    "relativePath": "Scripts\\Components\\PuzzleBoardProvider.js"
+  },
   "f29ec425-24df-4284-b344-7bd09808c059": {
-    "asset": 1565820543773,
-    "meta": 1565820545095,
+    "asset": 1565822079444,
+    "meta": 1565822083482,
     "relativePath": "Scripts\\UI\\Controls\\PuzzleBoardRenderer.js"
   }
 }

@@ -214,7 +214,7 @@ var PuzzleBoardProvider = function () {
             if (!this.getCharacterAt(candidate) && this.areDirectConnected(posA, candidate) && this.areDirectConnected(candidate, posB)) {
                 return [posA, candidate, posB];
             }
-            candidate = cc.v2(posA.y, posB.x);
+            candidate = cc.v2(posB.x, posA.y);
             if (!this.getCharacterAt(candidate) && this.areDirectConnected(posA, candidate) && this.areDirectConnected(candidate, posB)) {
                 return [posA, candidate, posB];
             }
@@ -250,12 +250,12 @@ var PuzzleBoardProvider = function () {
             console.log('connectCharacters: check three inner connection failed.');
 
             // Check Three Outter Connection
-            var minX = posA.x < posB.x ? posA.x : posB.x;
-            var maxX = posA.x > posB.x ? posA.x : posB.x;
-            var minY = posA.y < posB.y ? posA.y : posB.y;
-            var maxY = posA.y > posB.y ? posA.y : posB.y;
+            var minX = Utils.Min(posA.x, posB.x);
+            var maxX = Utils.Max(posA.x, posB.x);
+            var minY = Utils.Min(posA.y, posB.y);
+            var maxY = Utils.Max(posA.y, posB.y);
 
-            for (var i = maxX + 1; i <= this.board.width; i++) {
+            for (var i = maxX + 1; i <= this.board.width + 1; i++) {
 
                 var candidate1 = cc.v2(i, posA.y);
                 var candidate2 = cc.v2(i, posB.y);
@@ -271,7 +271,7 @@ var PuzzleBoardProvider = function () {
                     return [posA, candidate1, candidate2, posB];
                 }
             }
-            for (var j = maxY + 1; j <= this.board.height; j++) {
+            for (var j = maxY + 1; j <= this.board.height + 1; j++) {
 
                 var candidate1 = cc.v2(posA.x, j);
                 var candidate2 = cc.v2(posB.x, j);
