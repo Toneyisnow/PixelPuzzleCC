@@ -1426,8 +1426,8 @@
     "categoryTitle": {
       "__id__": 7
     },
-    "titleTransitionDuration": 0.8,
-    "fadeInDuration": 1,
+    "titleTransitionDuration": 0.5,
+    "fadeInDuration": 0.4,
     "stagePreviewAnchors": [
       {
         "__id__": 12
@@ -1461,6 +1461,10 @@
       "__uuid__": "d39893dc-a474-4732-bd1a-0c614cbfe0dc"
     },
     "stagePreviewNodes": [],
+    "btnBack": {
+      "__id__": 21
+    },
+    "categoryId": 0,
     "_id": "b6Q0aVmpVDp5QzAe4pXFrF"
   }
 ]

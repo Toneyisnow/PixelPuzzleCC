@@ -132,7 +132,7 @@ cc.Class({
                     let charSprite = node.addComponent(cc.Sprite);
                     charSprite.spriteFrame = characterSpriteFrame;
                     
-                    var charIndex = lines[ii] * columnCount + jj;
+                    var charIndex = ii * columnCount + jj;
                     var anchor = self.characterAnchors[charIndex];
                     console.log('anchor position:', anchor.position.x, anchor.position.y);
                     

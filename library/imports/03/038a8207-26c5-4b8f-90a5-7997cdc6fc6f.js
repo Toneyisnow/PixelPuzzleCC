@@ -37,7 +37,15 @@ cc.Class({
 
         stagePreviewPrefab: cc.Prefab,
 
-        stagePreviewNodes: []
+        stagePreviewNodes: [],
+
+        btnBack: {
+            default: null,
+            type: cc.Node
+        },
+
+        categoryId: 0
+
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -59,7 +67,10 @@ cc.Class({
 
     onLoad: function onLoad() {
 
+        this.categoryId = cc.GlobalStorage.loadIntermediateValue("selectedCategoryId");
+
         this.createStagePreviews();
+        this.btnBack.on('touchup', this.onBackClicked);
     },
     start: function start() {
 
@@ -79,12 +90,23 @@ cc.Class({
 
     createStagePreviews: function createStagePreviews() {
 
-        var record = new cc.StageRecord();
-        record.stageId = 101;
-
         for (var i = 0; i < 9; ++i) {
+
+            // Read definition and record
+            var stageId = this.categoryId * 100 + i + 1;
+            var record = new cc.StageRecord();
+            record.stageId = stageId;
+
             var previewNode = cc.instantiate(this.stagePreviewPrefab);
+            if (!previewNode) {
+                continue;
+            }
+
             var anchor = this.stagePreviewAnchors[i];
+            if (!anchor) {
+                continue;
+            }
+
             anchor.addChild(previewNode);
             previewNode.position = cc.v2(0, 0);
             previewNode.opacity = 0;
@@ -92,7 +114,7 @@ cc.Class({
             previewNode.on("onSelected", this.onPreviewNodeSelected, this);
 
             var previewRenderer = previewNode.getComponent('StagePreviewRenderer');
-            previewRenderer.init(101, record);
+            previewRenderer.init(stageId, record);
 
             this.stagePreviewNodes.push(previewNode);
 
@@ -106,6 +128,13 @@ cc.Class({
 
         cc.GlobalStorage.saveIntermediateValue("selectedStageId", stageId);
         cc.director.loadScene("MainGameScene");
+    },
+
+    onBackClicked: function onBackClicked(event) {
+
+        console.log('onBackClicked triggered.');
+
+        cc.director.loadScene("SelectCategoryScene");
     }
 
     // update (dt) {},

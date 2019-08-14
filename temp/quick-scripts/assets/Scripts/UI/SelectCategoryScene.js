@@ -69,6 +69,7 @@ cc.Class({
     onTitleClicked: function onTitleClicked(button) {
 
         // Enter the category
+        // cc.GlobalStorage.saveIntermediateValue("selectedCategoryId", this.categoryId);
 
         cc.director.loadScene("SelectStageScene");
     },

@@ -118,7 +118,12 @@ cc.Class({
 
         console.log('stageDefinition: ', JSON.stringify(self.stageDefinition.poemDefinition));
 
-        self.hintBoardNode = cc.instantiate(self.hintBoard_2_5);
+        if (self.stageDefinition.poemDefinition.columnCount == 5) {
+            self.hintBoardNode = cc.instantiate(self.hintBoard_2_5);
+        } else if (self.stageDefinition.poemDefinition.columnCount == 7) {
+            self.hintBoardNode = cc.instantiate(self.hintBoard_2_7);
+        }
+
         var hintBoardRenderer = self.hintBoardNode.getComponent('HintBoardRenderer');
         hintBoardRenderer.init(self.stageDefinition);
 

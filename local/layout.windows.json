@@ -6,9 +6,9 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 307,
-      "y": 28,
-      "width": 1752,
+      "x": 281,
+      "y": 21,
+      "width": 1753,
       "height": 1175,
       "layout": {
         "children": [
@@ -46,23 +46,23 @@
                     "children": [
                       "scene"
                     ],
-                    "height": 710.2857666015625,
+                    "height": 768.3125610351562,
                     "type": "panel",
-                    "width": 690.107177734375
+                    "width": 817.1250610351562
                   },
                   {
                     "active": 0,
                     "children": [
                       "node-library"
                     ],
-                    "height": 710.2857666015625,
+                    "height": 768.3125610351562,
                     "type": "panel",
-                    "width": 406.0625305175781
+                    "width": 264.0446472167969
                   }
                 ],
-                "height": 710.2857666015625,
+                "height": 768.3125610351562,
                 "type": "dock-h",
-                "width": 1098.1785888671875
+                "width": 1083.169677734375
               },
               {
                 "active": 0,
@@ -71,14 +71,14 @@
                   "timeline",
                   "game-window"
                 ],
-                "height": 347.14288330078125,
+                "height": 289.1160888671875,
                 "type": "panel",
-                "width": 1098.1785888671875
+                "width": 1083.169677734375
               }
             ],
             "height": 1059.4285888671875,
             "type": "dock-v",
-            "width": 1098.1785888671875
+            "width": 1083.169677734375
           },
           {
             "active": 0,
@@ -88,7 +88,7 @@
             ],
             "height": 1059.4285888671875,
             "type": "panel",
-            "width": 357.0625305175781
+            "width": 372.0625305175781
           }
         ],
         "type": "dock-h"
