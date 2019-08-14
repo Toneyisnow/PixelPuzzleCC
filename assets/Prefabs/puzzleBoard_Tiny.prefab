@@ -270,6 +270,12 @@
     "puzzleBoardPrefab": {
       "__uuid__": "c5e8bc99-4f21-403f-8c14-d947dee4110e"
     },
+    "connectLineHorizon": {
+      "__uuid__": "fe453a4b-6f4a-474f-8853-0c676d63f0db"
+    },
+    "connectLineVertical": {
+      "__uuid__": "fdcfe34a-68cc-4ff3-a3b8-d00d67939da3"
+    },
     "boardProvider": null,
     "boardRootNode": {
       "__id__": 1

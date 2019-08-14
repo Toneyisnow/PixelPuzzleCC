@@ -90,8 +90,8 @@
     "relativePath": "Scenes\\SelectStageScene.fire"
   },
   "f9a5077c-b367-40cd-80ac-21bd31c6dea2": {
-    "asset": 1565372718170,
-    "meta": 1565372718199,
+    "asset": 1565735901946,
+    "meta": 1565735901981,
     "relativePath": "Scenes\\WelcomeScene.fire"
   },
   "9a464469-d7b7-42f5-8afa-4f25449f0af7": {
@@ -600,18 +600,18 @@
     "relativePath": "Scripts\\UI\\Controls"
   },
   "c5e8bc99-4f21-403f-8c14-d947dee4110e": {
-    "asset": 1565638546698,
-    "meta": 1565638546744,
+    "asset": 1565734862237,
+    "meta": 1565734862283,
     "relativePath": "Prefabs\\puzzleBoard_Tiny.prefab"
   },
   "f447235f-ef64-46f6-afa5-6cea6d2d7141": {
-    "asset": 1565638917583,
-    "meta": 1565638917607,
+    "asset": 1565734873263,
+    "meta": 1565734873287,
     "relativePath": "Prefabs\\puzzleBoard_Small.prefab"
   },
   "4c744fa1-123b-4aef-a593-4063a90a7d97": {
-    "asset": 1565377944268,
-    "meta": 1565377944296,
+    "asset": 1565734882214,
+    "meta": 1565734882237,
     "relativePath": "Prefabs\\puzzleBoard_Medium.prefab"
   },
   "5005e426-c088-471c-960c-d044265f36da": {
@@ -879,11 +879,6 @@
     "meta": 1565394492129,
     "relativePath": "Scripts\\UI\\MainGameScene.js"
   },
-  "4511619c-dd09-45b3-943d-b517a79f3fd2": {
-    "asset": 1565638820565,
-    "meta": 1565638821259,
-    "relativePath": "resources\\stages\\stage_101.json"
-  },
   "d3d85559-b873-4fef-809e-04a4d6582970": {
     "asset": 1565643400877,
     "meta": 1565643413710,
@@ -894,24 +889,49 @@
     "meta": 1565652819376,
     "relativePath": "Scripts\\Components\\PuzzleBoard.js"
   },
-  "97ef7b6b-e1cb-4ab3-91d2-c7ab607c9efc": {
-    "asset": 1565653478284,
-    "meta": 1565653821580,
-    "relativePath": "Scripts\\Common\\Utils.js"
-  },
-  "cd3088a4-5e24-4494-8ad9-fbc006790b13": {
-    "asset": 1565654011989,
-    "meta": 1565654052629,
-    "relativePath": "Scripts\\Components\\PuzzleBoardProvider.js"
-  },
   "355c66cd-97f1-491b-9440-7eba1637d716": {
     "asset": 1565653865658,
     "meta": 1565654052685,
     "relativePath": "Scripts\\Components\\StageDefinition.js"
   },
+  "d535e8e9-990b-4e6c-a530-47c4e32c1885": {
+    "asset": 1565718951087,
+    "meta": 1565718997970,
+    "relativePath": "Images\\control\\connect-line-horizon.png"
+  },
+  "1adc4a43-a4f7-4ba3-b64e-b2a538f50f73": {
+    "asset": 1565718962815,
+    "meta": 1565718997981,
+    "relativePath": "Images\\control\\connect-line-vertical.png"
+  },
+  "fe453a4b-6f4a-474f-8853-0c676d63f0db": {
+    "asset": 1565732923710,
+    "meta": 1565732923719,
+    "relativePath": "Prefabs\\connectLineHorizon.prefab"
+  },
+  "fdcfe34a-68cc-4ff3-a3b8-d00d67939da3": {
+    "asset": 1565733020509,
+    "meta": 1565733020534,
+    "relativePath": "Prefabs\\connectLineVertical.prefab"
+  },
+  "97ef7b6b-e1cb-4ab3-91d2-c7ab607c9efc": {
+    "asset": 1565734505618,
+    "meta": 1565734678380,
+    "relativePath": "Scripts\\Common\\Utils.js"
+  },
   "f29ec425-24df-4284-b344-7bd09808c059": {
-    "asset": 1565654160142,
-    "meta": 1565654162348,
+    "asset": 1565735503669,
+    "meta": 1565735515567,
     "relativePath": "Scripts\\UI\\Controls\\PuzzleBoardRenderer.js"
+  },
+  "cd3088a4-5e24-4494-8ad9-fbc006790b13": {
+    "asset": 1565735892050,
+    "meta": 1565735899472,
+    "relativePath": "Scripts\\Components\\PuzzleBoardProvider.js"
+  },
+  "4511619c-dd09-45b3-943d-b517a79f3fd2": {
+    "asset": 1565736056319,
+    "meta": 1565736058429,
+    "relativePath": "resources\\stages\\stage_101.json"
   }
 }

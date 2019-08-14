@@ -20,7 +20,7 @@
         "__id__": 15
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 0,
     "_components": [],
     "_prefab": null,
@@ -78,7 +78,7 @@
       }
     ],
     "_active": true,
-    "_level": 0,
+    "_level": 1,
     "_components": [
       {
         "__id__": 14
@@ -761,7 +761,6 @@
     "canvas": {
       "__id__": 14
     },
-    "testSprite": null,
     "_id": "4eXA0xYI1PxLY9o71LbsE9"
   }
 ]

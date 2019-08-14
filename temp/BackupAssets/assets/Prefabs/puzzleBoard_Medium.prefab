@@ -188,14 +188,26 @@
     "_enabled": true,
     "boardWidth": 1,
     "boardHeight": 1,
-    "poemId": 0,
     "poemDefinition": null,
     "puzzleDefinition": null,
     "stageDefinition": null,
-    "anchors": [],
+    "anchorStartPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "anchorInterval": 64,
     "puzzleBoardPrefab": {
       "__uuid__": "4c744fa1-123b-4aef-a593-4063a90a7d97"
     },
+    "connectLineHorizon": {
+      "__uuid__": "fe453a4b-6f4a-474f-8853-0c676d63f0db"
+    },
+    "connectLineVertical": {
+      "__uuid__": "fdcfe34a-68cc-4ff3-a3b8-d00d67939da3"
+    },
+    "boardProvider": null,
+    "boardRootNode": null,
     "_id": ""
   },
   {

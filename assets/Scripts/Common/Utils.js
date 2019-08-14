@@ -27,6 +27,21 @@ class Utils {
         return (vec1 && vec2 && vec1.x == vec2.x && vec1.y == vec2.y);
     }
     
+    static Min(val1, val2) {
+    
+        return (val1 < val2 ? val1 : val2);
+    }
+    
+    static Max(val1, val2) {
+    
+        return (val1 > val2 ? val1 : val2);
+    }
+    
+    static Abs(val1, val2) {
+        
+        return (val1 > val2 ? val1 - val2 : val2 - val1);
+    }
+    
 };
 
 

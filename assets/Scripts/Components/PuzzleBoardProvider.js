@@ -120,12 +120,18 @@ class PuzzleBoardProvider {
             var x = Utils.randomInteger(this.board.width) + 1;
             var y = Utils.randomInteger(this.board.height) + 1;
             
+            while(characterMatrix[x][y]) {
+                x = Utils.randomInteger(this.board.width) + 1;
+                y = Utils.randomInteger(this.board.height) + 1;
+            }
+            
             characterMatrix[x][y] = characterId;
         }
         
         return characterMatrix;
     }
     
+    // When player choose character on the position
     takeActionAt(position) {
         
         if (this.board.status == PuzzleBoardStatus.IDLE) {
@@ -143,10 +149,16 @@ class PuzzleBoardProvider {
                 this.handler.onUnchooseCharacterAt(position, this.board.lastSelectedPosition);
                 return;
             }
-        
-            this.handler.onConnected(position, this.board.lastSelectedPosition, [cc.v2(0,0)]);
-        
             
+            var connectionPoints = this.connectCharacters(this.board.lastSelectedPosition, position);
+            if (connectionPoints && connectionPoints.length > 0) {
+                
+                this.handler.onConnected(position, this.board.lastSelectedPosition, connectionPoints);
+            } else {
+            
+                this.handler.onMatchNotConnected(position, this.board.lastSelectedPosition);
+            }
+        
         }
     }
     
@@ -160,6 +172,139 @@ class PuzzleBoardProvider {
         }
         
         return this.stageDefinition.matchFormulaDefinition(charA, charB);
+    }
+    
+    connectCharacters(posA, posB) {
+    
+        console.log('connectCharacters');
+        
+        // Check One Connection
+        if (posA.x == posB.x && this.areDirectConnected(posA, posB)
+            || posA.y == posB.y && this.areDirectConnected(posA, posB)) {
+            return [posA, posB];
+        }
+        console.log('connectCharacters: check one connection failed.');
+        
+        // Check Two Connection
+        var candidate = cc.v2(posA.x, posB.y);
+        if (!this.getCharacterAt(candidate) && this.areDirectConnected(posA, candidate) && this.areDirectConnected(candidate, posB)) {
+            return [posA, candidate, posB];
+        }
+        candidate = cc.v2(posA.y, posB.x);
+        if (!this.getCharacterAt(candidate) && this.areDirectConnected(posA, candidate) && this.areDirectConnected(candidate, posB)) {
+            return [posA, candidate, posB];
+        }
+        console.log('connectCharacters: check two connection failed.');
+        
+        // Check Three Inner Connection
+        if (posA.x != posB.x) {
+            
+            var deltaX = (posA.x < posB.x ? 1 : -1);
+            var iter = posA.x + deltaX;
+            while (iter != posB.x) {
+                var candidate1 = cc.v2(iter, posA.y);
+                var candidate2 = cc.v2(iter, posB.y);
+                if (!this.getCharacterAt(candidate1) && !this.getCharacterAt(candidate2)
+                    && this.areDirectConnected(posA, candidate1) && this.areDirectConnected(candidate1, candidate2) && this.areDirectConnected(candidate2, posB) ) {
+                    return [posA, candidate1, candidate2, posB];
+                }
+                iter = iter + deltaX;
+            }
+        }
+        if (posA.y != posB.y) {
+            
+            var deltaY = (posA.y < posB.y ? 1 : -1);
+            var iter = posA.y + deltaY;
+            while (iter != posB.y) {
+                var candidate1 = cc.v2(posA.x, iter);
+                var candidate2 = cc.v2(posB.x, iter);
+                if (!this.getCharacterAt(candidate1) && !this.getCharacterAt(candidate2)
+                    && this.areDirectConnected(posA, candidate1) && this.areDirectConnected(candidate1, candidate2) && this.areDirectConnected(candidate2, posB) ) {
+                    return [posA, candidate1, candidate2, posB];
+                }
+                iter = iter + deltaY;
+            }
+        }
+        console.log('connectCharacters: check three inner connection failed.');
+        
+        // Check Three Outter Connection
+        var minX = (posA.x < posB.x ? posA.x : posB.x);
+        var maxX = (posA.x > posB.x ? posA.x : posB.x);
+        var minY = (posA.y < posB.y ? posA.y : posB.y);
+        var maxY = (posA.y > posB.y ? posA.y : posB.y);
+        
+        for(var i = maxX + 1; i <= this.board.width; i++) {
+            
+            var candidate1 = cc.v2(i, posA.y);
+            var candidate2 = cc.v2(i, posB.y);
+            if (!this.getCharacterAt(candidate1) && !this.getCharacterAt(candidate2)
+                && this.areDirectConnected(posA, candidate1) && this.areDirectConnected(candidate1, candidate2) && this.areDirectConnected(candidate2, posB) ) {
+                return [posA, candidate1, candidate2, posB];
+            }
+        }
+        for(var i = minX - 1; i >= 0; i--) {
+            
+            var candidate1 = cc.v2(i, posA.y);
+            var candidate2 = cc.v2(i, posB.y);
+            if (!this.getCharacterAt(candidate1) && !this.getCharacterAt(candidate2)
+                && this.areDirectConnected(posA, candidate1) && this.areDirectConnected(candidate1, candidate2) && this.areDirectConnected(candidate2, posB) ) {
+                return [posA, candidate1, candidate2, posB];
+            }
+        }
+        for(var j = maxY + 1; j <= this.board.height; j++) {
+            
+            var candidate1 = cc.v2(posA.x, j);
+            var candidate2 = cc.v2(posB.x, j);
+            if (!this.getCharacterAt(candidate1) && !this.getCharacterAt(candidate2)
+                && this.areDirectConnected(posA, candidate1) && this.areDirectConnected(candidate1, candidate2) && this.areDirectConnected(candidate2, posB) ) {
+                return [posA, candidate1, candidate2, posB];
+            }
+        }
+        for(var j = minY - 1; j >= 0; j--) {
+            
+            var candidate1 = cc.v2(posA.x, j);
+            var candidate2 = cc.v2(posB.x, j);
+            if (!this.getCharacterAt(candidate1) && !this.getCharacterAt(candidate2)
+                && this.areDirectConnected(posA, candidate1) && this.areDirectConnected(candidate1, candidate2) && this.areDirectConnected(candidate2, posB) ) {
+                return [posA, candidate1, candidate2, posB];
+            }
+        }
+        console.log('connectCharacters: check three outer connection failed.');
+        
+        
+        return [];
+    }
+    
+    // Simple check for two points to be connected
+    areDirectConnected(posA, posB) {
+        
+        if (posA.x == posB.x) {
+            
+            var begin = (posA.y < posB.y ? posA.y : posB.y);
+            var end = (posA.y > posB.y ? posA.y : posB.y);
+            
+            for(var i = begin + 1; i < end; i++) {
+                if (this.getCharacterAt(cc.v2(posA.x, i))) {
+                    return false;
+                }
+            }
+            return true;
+            
+        } else if (posA.y == posB.y) {
+            
+            var begin = (posA.x < posB.x ? posA.x : posB.x);
+            var end = (posA.x > posB.x ? posA.x : posB.x);
+            
+            for(var i = begin + 1; i < end; i++) {
+                if (this.getCharacterAt(cc.v2(i, posA.y))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        // If A and B are not in the same line, just return false.
+        return false;
     }
     
     getCharacterAt(position) {

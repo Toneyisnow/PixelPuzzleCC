@@ -57,6 +57,10 @@ cc.Class({
 
         puzzleBoardPrefab: cc.Prefab,
 
+        connectLineHorizon: cc.Prefab,
+
+        connectLineVertical: cc.Prefab,
+
         boardProvider: {
             default: null,
             type: cc.PuzzleBoardProvider
@@ -127,13 +131,13 @@ cc.Class({
                         var charSprite = node.addComponent(cc.Sprite);
                         charSprite.spriteFrame = characterSpriteFrame;
 
-                        var posX = self.anchorStartPoint.x + ii * self.anchorInterval;
-                        var posY = self.anchorStartPoint.y - jj * self.anchorInterval;
+                        //var posX = self.anchorStartPoint.x + ii * self.anchorInterval;
+                        //var posY = self.anchorStartPoint.y - jj * self.anchorInterval;
 
                         //var posX = -160 + ii * 64;
                         //var posY = 226 - jj * 64;
 
-                        node.position = cc.v2(posX, posY);
+                        node.position = self.convertToPixelPosition(cc.v2(ii, jj));
                         node.scale = 0.5;
                         // node.tag = cc.v2(ii, jj);
                         // node.on(cc.Node.EventType.TOUCH_END, this.onBoardClickedAt, this);
@@ -234,7 +238,7 @@ cc.Class({
     // Connect from the firstPosition through connectPoints and to the position
     onConnected: function onConnected(position, firstPosition, connectPoints) {
 
-        console.log('onConnected triggered.');
+        console.log('onConnected triggered. points: ', connectPoints);
 
         var node = this.getNodeAtPosition(position);
         if (node) {
@@ -253,9 +257,57 @@ cc.Class({
             // Play animation
             firstNode.runAction(new cc.scaleTo(0.3, 1.0));
         }
+
+        if (!connectPoints || connectPoints.length <= 0) {
+            console.log('no connect points returned.');
+            return;
+        }
+
+        // Show the lines connect them
+        for (var i = 1; i < connectPoints.length; i++) {
+            var lastPoint = connectPoints[i - 1];
+            var point = connectPoints[i];
+
+            var lineNode = this.createLinePrefab(lastPoint, point);
+            this.boardRootNode.addChild(lineNode);
+        }
+    },
+
+    createLinePrefab: function createLinePrefab(posA, posB) {
+
+        var line = undefined;
+        var startX = Utils.Min(posA.x, posB.x);
+        var startY = Utils.Max(posA.y, posB.y);
+
+        if (posA.x == posB.x) {
+
+            line = cc.instantiate(this.connectLineVertical);
+            line.position = this.convertToPixelPosition(cc.v2(startX, startY));
+            line.anchorX = line.anchorY = 0;
+            line.scaleY = Utils.Abs(posA.y, posB.y);
+        } else if (posA.y == posB.y) {
+
+            line = cc.instantiate(this.connectLineHorizon);
+            line.position = this.convertToPixelPosition(cc.v2(startX, startY));
+            line.anchorX = line.anchorY = 0;
+            line.scaleX = Utils.Abs(posA.x, posB.x);
+        } else {
+            return undefined;
+        }
+
+        return line;
+    },
+
+    convertToPixelPosition: function convertToPixelPosition(position) {
+
+        var pixelX = this.anchorStartPoint.x + position.x * this.anchorInterval;
+        var pixelY = this.anchorStartPoint.y - position.y * this.anchorInterval;
+
+        return cc.v2(pixelX, pixelY);
     }
 
     // update (dt) {},
+
 });
 
 cc._RF.pop();

@@ -39,6 +39,24 @@ var Utils = function () {
 
             return vec1 && vec2 && vec1.x == vec2.x && vec1.y == vec2.y;
         }
+    }, {
+        key: "Min",
+        value: function Min(val1, val2) {
+
+            return val1 < val2 ? val1 : val2;
+        }
+    }, {
+        key: "Max",
+        value: function Max(val1, val2) {
+
+            return val1 > val2 ? val1 : val2;
+        }
+    }, {
+        key: "Abs",
+        value: function Abs(val1, val2) {
+
+            return val1 > val2 ? val1 - val2 : val2 - val1;
+        }
     }]);
 
     return Utils;
