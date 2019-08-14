@@ -47,6 +47,16 @@ cc.Class({
             type: cc.Node
         },
 
+        hintBoard: {
+            default: null,
+            type: cc.HintBoard
+        },
+
+        puzzleBoard: {
+            default: null,
+            type: cc.PuzzleBoard
+        },
+
         btnBack: {
             default: null,
             type: cc.Button
@@ -108,11 +118,12 @@ cc.Class({
 
         console.log('stageDefinition: ', JSON.stringify(self.stageDefinition.poemDefinition));
 
-        var hintBoardNode = cc.instantiate(self.hintBoard_2_5);
-        var hintBoardRenderer = hintBoardNode.getComponent('HintBoardRenderer');
+        self.hintBoardNode = cc.instantiate(self.hintBoard_2_5);
+        var hintBoardRenderer = self.hintBoardNode.getComponent('HintBoardRenderer');
         hintBoardRenderer.init(self.stageDefinition);
 
-        self.anchorHintBoard.addChild(hintBoardNode);
+        self.anchorHintBoard.addChild(self.hintBoardNode);
+        self.hintBoardNode.on('allclear', self.onAllClear);
 
         // Add PuzzleBoard on the middle
         var boardPrefab = self.puzzleBoard_Tiny;
@@ -137,11 +148,16 @@ cc.Class({
                 {}
         }
 
-        var puzzleBoardNode = cc.instantiate(boardPrefab);
-        var puzzleBoardNodeRenderer = puzzleBoardNode.getComponent('PuzzleBoardRenderer');
+        self.puzzleBoardNode = cc.instantiate(boardPrefab);
+        var puzzleBoardNodeRenderer = self.puzzleBoardNode.getComponent('PuzzleBoardRenderer');
         puzzleBoardNodeRenderer.init(self.stageDefinition);
 
-        self.anchorPuzzleBoard.addChild(puzzleBoardNode);
+        self.anchorPuzzleBoard.addChild(self.puzzleBoardNode);
+
+        self.puzzleBoardNode.on('receivedCharacter', function (characterId) {
+            var hintBoardRenderer = self.hintBoardNode.getComponent('HintBoardRenderer');
+            hintBoardRenderer.onReceivedCharacter(characterId);
+        });
     },
 
     start: function start() {},
@@ -155,6 +171,11 @@ cc.Class({
     onRefresh: function onRefresh(handle) {
 
         cc.director.loadScene("MainGameScene");
+    },
+
+    onAllClear: function onAllClear() {
+
+        console.log('MainGameScene: onAllClear!!');
     }
 
     // update (dt) {},

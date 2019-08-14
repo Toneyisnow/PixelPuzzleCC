@@ -159,7 +159,8 @@ var PuzzleBoardProvider = function () {
                 this.handler.onChooseCharacterAt(position);
             } else {
 
-                if (Utils.areSameVec(position, this.board.lastSelectedPosition) || !this.areCharactersMatching(position, this.board.lastSelectedPosition)) {
+                var matchingFormula = this.areCharactersMatching(position, this.board.lastSelectedPosition);
+                if (Utils.areSameVec(position, this.board.lastSelectedPosition) || !matchingFormula) {
 
                     this.board.status = PuzzleBoardStatus.IDLE;
                     this.handler.onUnchooseCharacterAt(position, this.board.lastSelectedPosition);
@@ -169,8 +170,15 @@ var PuzzleBoardProvider = function () {
                 var connectionPoints = this.connectCharacters(this.board.lastSelectedPosition, position);
                 if (connectionPoints && connectionPoints.length > 0) {
 
-                    this.handler.onConnected(position, this.board.lastSelectedPosition, connectionPoints);
+                    // Remove the characters 
+                    this.clearCharacterAt(this.board.lastSelectedPosition);
+                    this.clearCharacterAt(position);
+                    this.board.status = PuzzleBoardStatus.IDLE;
+
+                    this.handler.onConnected(position, this.board.lastSelectedPosition, connectionPoints, matchingFormula.targetCharacter);
                 } else {
+
+                    this.board.status = PuzzleBoardStatus.IDLE;
 
                     this.handler.onMatchNotConnected(position, this.board.lastSelectedPosition);
                 }
@@ -316,6 +324,15 @@ var PuzzleBoardProvider = function () {
 
             // If A and B are not in the same line, just return false.
             return false;
+        }
+    }, {
+        key: 'clearCharacterAt',
+        value: function clearCharacterAt(position) {
+
+            var character = this.getCharacterAt(position);
+            if (character && this.board.characterMatrix[position.x]) {
+                this.board.characterMatrix[position.x][position.y] = undefined;
+            }
         }
     }, {
         key: 'getCharacterAt',

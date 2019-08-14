@@ -218,7 +218,7 @@ cc.Class({
             console.log('Got node on ', position.x, position.y);
             
             // Play animation
-            node.runAction(new cc.scaleTo(0.3, 0.5));
+            node.runAction(new cc.scaleTo(0.2, 0.5));
         }
         
         if (Utils.areSameVec(firstPosition, position)) {
@@ -231,7 +231,7 @@ cc.Class({
             console.log('Got node on ', firstPosition.x, firstPosition.y);
             
             // Play animation
-            firstNode.runAction(new cc.scaleTo(0.3, 0.5));
+            firstNode.runAction(new cc.scaleTo(0.2, 0.5));
         }
     },
     
@@ -239,20 +239,17 @@ cc.Class({
     onMatchNotConnected: function (position, firstPosition) {
         console.log('onMatchNotConnected triggered.');
     
-    },
-
-    // Connect from the firstPosition through connectPoints and to the position
-    onConnected: function (position, firstPosition, connectPoints) {
-        
-        console.log('onConnected triggered. points: ', connectPoints);
-        
         var node = this.getNodeAtPosition(position);
         if (node) {
         
             console.log('Got node on ', position.x, position.y);
             
             // Play animation
-            node.runAction(new cc.scaleTo(0.3, 1.0));
+            node.runAction(new cc.scaleTo(0.2, 0.5));
+        }
+        
+        if (Utils.areSameVec(firstPosition, position)) {
+            return;
         }
         
         var firstNode = this.getNodeAtPosition(firstPosition);
@@ -261,7 +258,22 @@ cc.Class({
             console.log('Got node on ', firstPosition.x, firstPosition.y);
             
             // Play animation
-            firstNode.runAction(new cc.scaleTo(0.3, 1.0));
+            firstNode.runAction(new cc.scaleTo(0.2, 0.5));
+        }
+    },
+
+    // Connect from the firstPosition through connectPoints and to the position
+    onConnected: function (position, firstPosition, connectPoints, targetChar) {
+        
+        console.log('onConnected triggered. points:', connectPoints, ' target character:', targetChar);
+        
+        var self = this;
+        var node = this.getNodeAtPosition(position);
+        var firstNode = this.getNodeAtPosition(firstPosition);
+        if (!node || !firstNode) {
+        
+            console.log('onConnected: one of the node is undefined, ignore this.');
+            return;
         }
         
         if (!connectPoints || connectPoints.length <= 0) {
@@ -270,15 +282,19 @@ cc.Class({
         }
     
         // Show the lines connect them
+        var lineNodes = [];
         for (var i = 1; i < connectPoints.length; i++) {
             var lastPoint = connectPoints[i - 1];
             var point = connectPoints[i];
             
             var lineNode = this.createLinePrefab(lastPoint, point);
-            this.boardRootNode.addChild(lineNode);
+            lineNodes.push(lineNode);
+            // this.boardRootNode.addChild(lineNode);
         }
         
-        
+        this.playAnimationMergeChars(firstNode, node, lineNodes, function() {
+            self.node.emit('receivedCharacter', targetChar);
+        });
     },
 
     createLinePrefab: function(posA, posB) {
@@ -310,13 +326,42 @@ cc.Class({
         return line;
     },
 
-    convertToPixelPosition(position) {
+    convertToPixelPosition: function(position) {
     
         var pixelX = this.anchorStartPoint.x + position.x * this.anchorInterval;
         var pixelY = this.anchorStartPoint.y - position.y * this.anchorInterval;
         
         return cc.v2(pixelX, pixelY);
+    },
+    
+    playAnimationMergeChars: function(charNodeA, charNodeB, lineNodes, followUpAction) {
+        
+        var self = this;
+        
+        // Play animation
+        charNodeA.runAction(cc.scaleTo(0.3, 0.8));
+        charNodeB.runAction(cc.scaleTo(0.3, 0.8));
+           
+        for (var i = 0; i < lineNodes.length; i++) {
+            this.boardRootNode.addChild(lineNodes[i]);
+        }
+        
+        var delayAction = cc.delayTime(0.7);
+        var finishAction = cc.callFunc(function () {
+            
+            charNodeA.removeFromParent();
+            charNodeB.removeFromParent();
+            
+            for (var i = 0; i < lineNodes.length; i++) {
+                lineNodes[i].removeFromParent();
+            }
+        }, this);
+
+        var calbackAction = cc.callFunc(followUpAction, this);
+
+        this.node.runAction(cc.sequence(delayAction, finishAction, calbackAction));
     }
+    
 
     // update (dt) {},
 });

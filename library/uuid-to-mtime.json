@@ -859,11 +859,6 @@
     "meta": 1565377621122,
     "relativePath": "model\\primitives.fbx"
   },
-  "cabc6959-3856-4c63-bd67-c88de49afba1": {
-    "asset": 1565379330727,
-    "meta": 1565379368954,
-    "relativePath": "Scripts\\UI\\Controls\\HintBoardRenderer.js"
-  },
   "c574ff46-30b2-406b-870e-f0c56c8a0f8b": {
     "asset": 1565387429289,
     "meta": 1565388223511,
@@ -873,11 +868,6 @@
     "asset": 1565391738156,
     "meta": 1565391745937,
     "relativePath": "Scripts\\Components\\PuzzleDefinition.js"
-  },
-  "b39e5574-a660-427b-821d-d0d3f70d627c": {
-    "asset": 1565394491445,
-    "meta": 1565394492129,
-    "relativePath": "Scripts\\UI\\MainGameScene.js"
   },
   "d3d85559-b873-4fef-809e-04a4d6582970": {
     "asset": 1565643400877,
@@ -919,19 +909,34 @@
     "meta": 1565734678380,
     "relativePath": "Scripts\\Common\\Utils.js"
   },
-  "f29ec425-24df-4284-b344-7bd09808c059": {
-    "asset": 1565735503669,
-    "meta": 1565735515567,
-    "relativePath": "Scripts\\UI\\Controls\\PuzzleBoardRenderer.js"
-  },
-  "cd3088a4-5e24-4494-8ad9-fbc006790b13": {
-    "asset": 1565735892050,
-    "meta": 1565735899472,
-    "relativePath": "Scripts\\Components\\PuzzleBoardProvider.js"
-  },
   "4511619c-dd09-45b3-943d-b517a79f3fd2": {
     "asset": 1565736056319,
     "meta": 1565736058429,
     "relativePath": "resources\\stages\\stage_101.json"
+  },
+  "e8d4437a-665d-4606-b8f9-186bac914851": {
+    "asset": 1565817466515,
+    "meta": 1565817469296,
+    "relativePath": "Scripts\\Components\\HintBoard.js"
+  },
+  "cd3088a4-5e24-4494-8ad9-fbc006790b13": {
+    "asset": 1565818959567,
+    "meta": 1565819068901,
+    "relativePath": "Scripts\\Components\\PuzzleBoardProvider.js"
+  },
+  "b39e5574-a660-427b-821d-d0d3f70d627c": {
+    "asset": 1565820122947,
+    "meta": 1565820312674,
+    "relativePath": "Scripts\\UI\\MainGameScene.js"
+  },
+  "cabc6959-3856-4c63-bd67-c88de49afba1": {
+    "asset": 1565820506057,
+    "meta": 1565820545093,
+    "relativePath": "Scripts\\UI\\Controls\\HintBoardRenderer.js"
+  },
+  "f29ec425-24df-4284-b344-7bd09808c059": {
+    "asset": 1565820543773,
+    "meta": 1565820545095,
+    "relativePath": "Scripts\\UI\\Controls\\PuzzleBoardRenderer.js"
   }
 }

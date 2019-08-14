@@ -19,6 +19,7 @@ require('GlobalStorage');
 require('PoemDefinition');
 require('StageDefinition');
 require('PuzzleDefinition');
+require('HintBoard');
 
 cc.Class({
     extends: cc.Component,
@@ -51,7 +52,9 @@ cc.Class({
             type: cc.Node
         },
 
-        poemBoardPrefab: cc.Prefab
+        poemBoardPrefab: cc.Prefab,
+
+        hintBoard: cc.HintBoard
 
         // foo: {
         //     // ATTRIBUTES:
@@ -97,11 +100,11 @@ cc.Class({
         //    self.testSprite.spriteFrame = frame;
         //});
 
-
         var lines = this.puzzleDefinition.selectedLines;
 
         var lineCount = this.poemDefinition.lineCount;
         var columnCount = this.poemDefinition.columnCount;
+        this.hintBoard = new cc.HintBoard();
 
         //cc.loader.loadRes("characters/chars_fzlb", cc.SpriteAtlas, function (err, atlas) {
 
@@ -117,12 +120,14 @@ cc.Class({
         //    self.testSprite.spriteFrame = frame;
         //});
 
-        console.log('onLoad: loading PoemDefinitions. Totallength: ', lineCount, columnCount);
+        console.log('onLoad: loading PoemDefinitions. Total length: ', lineCount, columnCount);
         console.log('selectedLines: ', lines);
         for (var i = 0; i < lines.length; ++i) {
             for (var j = 0; j < columnCount; ++j) {
 
                 var characterId = this.poemDefinition.content[lines[i]][j];
+                this.hintBoard.pushCharacter(characterId);
+
                 cc.GlobalStorage.loadCharacterSpriteFrame(characterId, i, j, function (characterSpriteFrame, ii, jj) {
 
                     var node = new cc.Node();
@@ -133,19 +138,77 @@ cc.Class({
                     var anchor = self.characterAnchors[charIndex];
                     console.log('anchor position:', anchor.position.x, anchor.position.y);
 
-                    anchor.addChild(node);
+                    anchor.addChild(node, 1, self.getCharacterTag(charIndex));
                     node.position = cc.v2(0, 0);
 
                     console.log('checking uncovered for charIndex: ', charIndex);
                     if (self.puzzleDefinition.isUncoveredChar(charIndex)) {
-                        node.opacity = 255;
+
+                        self.hintBoard.setUncoveredAt(charIndex);
+                        self.setCharUncoveredEffect(anchor, true);
                     } else {
-                        node.opacity = 64;
+                        self.setCharCoveredEffect(anchor);
                     }
                 });
             }
         }
     },
+
+
+    getCharacterTag: function getCharacterTag(index) {
+        return 'char_' + index;
+    },
+
+    // On this board has received character
+    onReceivedCharacter: function onReceivedCharacter(characterId) {
+
+        console.log('HintBoardRenderer onReceivedCharacter: ', characterId);
+        for (var i = 0; i < this.hintBoard.charCount; i++) {
+
+            // console.log('HintBoardRenderer: comparing char:', this.hintBoard.charList[i], characterId);
+            if (this.hintBoard.charList[i] == characterId && !this.hintBoard.isUncoveredAt(i)) {
+                this.hintBoard.setUncoveredAt(i);
+
+                var anchor = this.characterAnchors[i];
+                if (anchor) {
+                    this.setCharUncoveredEffect(anchor, true);
+                }
+
+                if (!this.isBoardAllClear()) {
+                    this.node.emit('allclear');
+                }
+
+                return;
+            }
+        }
+    },
+
+    isBoardAllClear: function isBoardAllClear() {
+
+        for (var i = 0; i < this.hintBoard.charCount; i++) {
+            if (!this.hintBoard.isUncoveredAt(i)) {
+                return false;
+            }
+        }
+
+        return true;
+    },
+
+    setCharUncoveredEffect: function setCharUncoveredEffect(node, hasAnimation) {
+        node.opacity = 255;
+
+        if (hasAnimation) {
+
+            var ani1 = cc.scaleTo(0.1, 1.2);
+            var ani2 = cc.scaleTo(0.8, 1.0);
+            node.runAction(cc.sequence(ani1, ani2));
+        }
+    },
+
+    setCharCoveredEffect: function setCharCoveredEffect(node) {
+        node.opacity = 64;
+    },
+
     start: function start() {}
 }
 
