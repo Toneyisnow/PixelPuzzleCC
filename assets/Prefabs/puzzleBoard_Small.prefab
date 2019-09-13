@@ -154,7 +154,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "56ee1278-4c42-4bc2-a50f-de88001d85e2"
+      "__uuid__": "276bf224-c572-4837-bb37-083b5992b7a0"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -176,7 +176,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "f447235f-ef64-46f6-afa5-6cea6d2d7141"
+      "__uuid__": "5753063b-d0b7-4328-9328-4ecd96c1e0d3"
     },
     "fileId": "adiWwrvg9JA4ZbGlX8GZMq",
     "sync": false
@@ -243,13 +243,13 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "f447235f-ef64-46f6-afa5-6cea6d2d7141"
+      "__uuid__": "5753063b-d0b7-4328-9328-4ecd96c1e0d3"
     },
     "fileId": "0bf9nvajRBFIj4MKoPMukz",
     "sync": false
   },
   {
-    "__type__": "f29ecQlJN9ChLNEe9CYCMBZ",
+    "__type__": "76a0a6tC1tEgonnMTeAGyKL",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -263,18 +263,18 @@
     "stageDefinition": null,
     "anchorStartPoint": {
       "__type__": "cc.Vec2",
-      "x": -225,
-      "y": 291
+      "x": -224,
+      "y": 288
     },
-    "anchorInterval": 65,
+    "anchorInterval": 64,
     "puzzleBoardPrefab": {
-      "__uuid__": "f447235f-ef64-46f6-afa5-6cea6d2d7141"
+      "__uuid__": "5753063b-d0b7-4328-9328-4ecd96c1e0d3"
     },
     "connectLineHorizon": {
-      "__uuid__": "fe453a4b-6f4a-474f-8853-0c676d63f0db"
+      "__uuid__": "ff9e2ecc-b52d-442e-a00c-afcaa9933a71"
     },
     "connectLineVertical": {
-      "__uuid__": "fdcfe34a-68cc-4ff3-a3b8-d00d67939da3"
+      "__uuid__": "a0fbae49-85fc-421d-9d9b-f4d7781c6c9d"
     },
     "boardProvider": null,
     "boardRootNode": {
@@ -288,7 +288,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "f447235f-ef64-46f6-afa5-6cea6d2d7141"
+      "__uuid__": "5753063b-d0b7-4328-9328-4ecd96c1e0d3"
     },
     "fileId": "95QsR5cUlJFLmHaqx845cO",
     "sync": false

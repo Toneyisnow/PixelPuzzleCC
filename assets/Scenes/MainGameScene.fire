@@ -57,7 +57,7 @@
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "2cabbb6e-4477-463d-bd8c-7e61180741a8"
+    "_id": "4060470d-de5e-410e-a6ea-d5d6f1affde5"
   },
   {
     "__type__": "cc.Node",
@@ -305,7 +305,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "4c45196b-043c-4639-bf56-ec87a9acd2c5"
+      "__uuid__": "3d04a279-688b-44f0-ba90-cb090d408850"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -572,7 +572,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "02e65672-9684-4c44-ae55-401c86b9455b"
+      "__uuid__": "4914fe01-2bf0-457d-a919-7a729aea21d4"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -672,9 +672,7 @@
       "b": 120,
       "a": 200
     },
-    "_N$normalSprite": {
-      "__uuid__": "02e65672-9684-4c44-ae55-401c86b9455b"
-    },
+    "_N$normalSprite": null,
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
     },
@@ -838,7 +836,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "3d038685-f488-442d-a5b1-973c64513b71"
+      "__uuid__": "9f42c6a9-a84c-4c2e-bbe3-8d4719238549"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -939,7 +937,7 @@
       "a": 200
     },
     "_N$normalSprite": {
-      "__uuid__": "3d038685-f488-442d-a5b1-973c64513b71"
+      "__uuid__": "9f42c6a9-a84c-4c2e-bbe3-8d4719238549"
     },
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
@@ -1037,7 +1035,7 @@
     "_id": "aaodbJ2Q5MxZ9UqHrNdMiE"
   },
   {
-    "__type__": "b39e5V0pmBCe4Id0NP3DWJ8",
+    "__type__": "0b9f5Sa5UlCd475hcE/7LnC",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1045,25 +1043,25 @@
     },
     "_enabled": true,
     "hintBoard_2_5": {
-      "__uuid__": "a4452b3c-7551-41a3-816f-6a09dfab22b8"
+      "__uuid__": "bff168e1-9e67-4fa9-b841-a8853cfc9017"
     },
     "hintBoard_2_7": {
-      "__uuid__": "d35ad4d2-b50e-4723-94db-1a983c8fbf5d"
+      "__uuid__": "e8b84c6b-cfb7-4ae3-9546-8feafc4fc11c"
     },
     "hintBoard_4_5": {
-      "__uuid__": "408d0d1c-e769-4bf7-a1cd-1642e16c2997"
+      "__uuid__": "870a100b-fa96-4c4e-b297-e4e3303b06f5"
     },
     "hintBoard_4_7": {
-      "__uuid__": "3aa25aeb-22ad-4721-a3c8-1554fc0573f8"
+      "__uuid__": "623386f7-6447-44bd-867b-a1c15529fd68"
     },
     "puzzleBoard_Tiny": {
-      "__uuid__": "c5e8bc99-4f21-403f-8c14-d947dee4110e"
+      "__uuid__": "f5099151-3d68-4653-8a3d-cb2996b3d501"
     },
     "puzzleBoard_Small": {
-      "__uuid__": "f447235f-ef64-46f6-afa5-6cea6d2d7141"
+      "__uuid__": "5753063b-d0b7-4328-9328-4ecd96c1e0d3"
     },
     "puzzleBoard_Medium": {
-      "__uuid__": "4c744fa1-123b-4aef-a593-4063a90a7d97"
+      "__uuid__": "49bbe8ac-fb5e-4429-835c-69cc3cd017d9"
     },
     "anchorHintBoard": {
       "__id__": 7
@@ -1071,6 +1069,8 @@
     "anchorPuzzleBoard": {
       "__id__": 8
     },
+    "hintBoard": null,
+    "puzzleBoard": null,
     "btnBack": {
       "__id__": 13
     },
@@ -1079,6 +1079,6 @@
     },
     "stageId": 0,
     "stageDefinition": null,
-    "_id": "c0AVazFkRDnYHRDv4GOtmk"
+    "_id": "37tcQ//mtF9K1+6GVsLpvV"
   }
 ]

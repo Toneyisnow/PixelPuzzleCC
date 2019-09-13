@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "puzzle-brick-frame",
+    "texture": "88e14821-f141-4898-a1b7-2e7c8eefabe7",
+    "atlas": "",
+    "rect": [
+      1,
+      1,
+      128,
+      128
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      130,
+      130
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

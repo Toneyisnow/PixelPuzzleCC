@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "connect-line-horizon",
+    "texture": "edab088c-61e1-43a0-8ea0-75b44688e0bc",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      65,
+      5
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      65,
+      5
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

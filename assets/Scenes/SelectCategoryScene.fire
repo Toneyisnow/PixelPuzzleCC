@@ -57,7 +57,7 @@
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "703787e8-2db1-41ce-b490-efd53f40e50d"
+    "_id": "96fff35b-6b4b-4b37-878a-67583bc738ad"
   },
   {
     "__type__": "cc.Node",
@@ -302,7 +302,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "86e3992a-c470-4b70-b161-0e564c5429bc"
+      "__uuid__": "40e0b8fb-30c2-414a-86c6-274c6afdbe60"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -461,7 +461,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9fbf9a76-875a-4d2d-a21a-628d2ba9c6f1"
+      "__uuid__": "637473b8-e568-44fe-ba7b-69d56bdfbb41"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -727,7 +727,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "3132e7b3-5231-4803-bed5-df6ac0e0074b"
+      "__uuid__": "76b13618-0db3-4994-abf9-796a8af4035a"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -828,7 +828,7 @@
       "a": 200
     },
     "_N$normalSprite": {
-      "__uuid__": "3132e7b3-5231-4803-bed5-df6ac0e0074b"
+      "__uuid__": "76b13618-0db3-4994-abf9-796a8af4035a"
     },
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
@@ -993,7 +993,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1c9e00e4-fbbf-4a49-b538-0d96ee67eabc"
+      "__uuid__": "99c30b8f-e247-433d-8aeb-53a713cf6509"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -1094,7 +1094,7 @@
       "a": 200
     },
     "_N$normalSprite": {
-      "__uuid__": "1c9e00e4-fbbf-4a49-b538-0d96ee67eabc"
+      "__uuid__": "99c30b8f-e247-433d-8aeb-53a713cf6509"
     },
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
@@ -1192,7 +1192,7 @@
     "_id": "2f562ETaBAxbl/YpKFRIe9"
   },
   {
-    "__type__": "e7d07JZh7dKZ5ciOey0tEc4",
+    "__type__": "21ebeFn5ftB1IMu+OLkDnXk",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1208,6 +1208,6 @@
     "btnRight": {
       "__id__": 21
     },
-    "_id": "96ahrPScZGQIme2J68vTfy"
+    "_id": "96FcKXqoNGLq1XXNVLxyU2"
   }
 ]

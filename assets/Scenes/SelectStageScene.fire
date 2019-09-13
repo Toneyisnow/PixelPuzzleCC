@@ -57,7 +57,7 @@
     "_is3DNode": true,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "3512eb35-036e-48c3-b366-8257575e5ee1"
+    "_id": "438bfead-5a42-404f-a38f-83e08263af0c"
   },
   {
     "__type__": "cc.Node",
@@ -305,7 +305,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "86e3992a-c470-4b70-b161-0e564c5429bc"
+      "__uuid__": "40e0b8fb-30c2-414a-86c6-274c6afdbe60"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -397,7 +397,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9fbf9a76-875a-4d2d-a21a-628d2ba9c6f1"
+      "__uuid__": "637473b8-e568-44fe-ba7b-69d56bdfbb41"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -488,9 +488,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "3132e7b3-5231-4803-bed5-df6ac0e0074b"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -1216,7 +1214,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "02e65672-9684-4c44-ae55-401c86b9455b"
+      "__uuid__": "4914fe01-2bf0-457d-a919-7a729aea21d4"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -1316,9 +1314,7 @@
       "b": 120,
       "a": 200
     },
-    "_N$normalSprite": {
-      "__uuid__": "02e65672-9684-4c44-ae55-401c86b9455b"
-    },
+    "_N$normalSprite": null,
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
     },
@@ -1415,7 +1411,7 @@
     "_id": "9bM1Y5B+NJFo+T24hMbomn"
   },
   {
-    "__type__": "038a8IHJsVLj5CleZfNxvxv",
+    "__type__": "beaef+K+npDUpcIkqjraNHN",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1425,8 +1421,8 @@
     "categoryTitle": {
       "__id__": 7
     },
-    "titleTransitionDuration": 0.5,
-    "fadeInDuration": 0.4,
+    "titleTransitionDuration": 0.4,
+    "fadeInDuration": 0.8,
     "stagePreviewAnchors": [
       {
         "__id__": 12
@@ -1457,13 +1453,13 @@
       }
     ],
     "stagePreviewPrefab": {
-      "__uuid__": "d39893dc-a474-4732-bd1a-0c614cbfe0dc"
+      "__uuid__": "0a0b899e-605d-4d59-8cdb-d8348c49e4cc"
     },
     "stagePreviewNodes": [],
     "btnBack": {
       "__id__": 21
     },
     "categoryId": 0,
-    "_id": "b6Q0aVmpVDp5QzAe4pXFrF"
+    "_id": "e3s9Il7eNBKoDQRuxgRcVy"
   }
 ]

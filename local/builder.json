@@ -1,5 +1,5 @@
 {
-  "actualPlatform": "web-mobile",
+  "actualPlatform": "ios",
   "apiLevel": "",
   "appABIs": [],
   "buildPath": "./build",
@@ -9,11 +9,11 @@
   "keystoreAliasPassword": "",
   "keystorePassword": "",
   "keystorePath": "",
-  "platform": "web-mobile",
+  "platform": "ios",
   "previewHeight": "720",
   "previewWidth": "1280",
   "sourceMaps": false,
-  "template": "link",
+  "template": "default",
   "useDebugKeystore": true,
   "vsVersion": "auto"
 }

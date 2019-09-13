@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "welcom-button-0",
+    "texture": "fe264d2a-9102-4bf2-b476-3b29df967f2c",
+    "atlas": "",
+    "rect": [
+      79,
+      27,
+      636,
+      225
+    ],
+    "offset": [
+      15.5,
+      13.5
+    ],
+    "originalSize": [
+      763,
+      306
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

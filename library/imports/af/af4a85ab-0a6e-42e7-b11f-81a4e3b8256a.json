@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "connect-line-vertical",
+    "texture": "9d7924c4-f2b5-428b-9042-e1beec704212",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      5,
+      65
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      5,
+      65
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

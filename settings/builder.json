@@ -14,7 +14,7 @@
     "orientation": "portrait",
     "subContext": ""
   },
-  "encryptJs": true,
+  "encryptJs": false,
   "excludeScenes": [],
   "fb-instant-games": {},
   "includeSDKBox": false,
@@ -24,18 +24,18 @@
   "mergeStartScene": false,
   "optimizeHotUpdate": false,
   "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
     "upsideDown": false
   },
-  "packageName": "org.cocos2d.helloworld",
+  "packageName": "org.toneyisnow.helloworld",
   "qqplay": {
     "REMOTE_SERVER_ROOT": "",
     "orientation": "portrait",
     "zip": false
   },
-  "startScene": "f9a5077c-b367-40cd-80ac-21bd31c6dea2",
+  "startScene": "d44e94f3-4388-414a-b0aa-b592aa884b20",
   "title": "hello_world",
   "webOrientation": "portrait",
   "wechatgame": {
