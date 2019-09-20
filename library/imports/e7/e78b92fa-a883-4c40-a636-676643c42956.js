@@ -33,6 +33,8 @@ var StageDefinition = function () {
         this.puzzleDefinition = undefined;
 
         this.formulaDefinitions = [];
+
+        this.targetCharaters = [];
     }
 
     // Load definition from JSON file
@@ -64,6 +66,9 @@ var StageDefinition = function () {
 
             return undefined;
         }
+    }, {
+        key: 'collectTargetCharacters',
+        value: function collectTargetCharacters() {}
     }], [{
         key: 'loadFromFile',
         value: function loadFromFile(stageId, callback, caller) {

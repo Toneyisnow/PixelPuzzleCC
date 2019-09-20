@@ -9,7 +9,7 @@
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 var Utils = require('Utils');
- 
+
 const PuzzleBoardStatus = {
     IDLE: 0,
     ONE_SELECTED: 1
@@ -17,20 +17,21 @@ const PuzzleBoardStatus = {
 
 
 class PuzzleBoard {
-    
+
     constructor() {
-        
+
         this.width = 0;
         this.height = 0;
-        
+
+        this.targetCharacters = [];
         this.characterMatrix = [];
-        
+
         this.status = PuzzleBoardStatus.IDLE;
         this.lastSelectedPosition = cc.v2(-1, -1);
     }
-    
-    
-    
+
+
+
 };
 
 module.exports = {

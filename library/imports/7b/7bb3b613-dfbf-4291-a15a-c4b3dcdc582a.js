@@ -29,6 +29,7 @@ var PuzzleBoard = function PuzzleBoard() {
     this.width = 0;
     this.height = 0;
 
+    this.targetCharacters = [];
     this.characterMatrix = [];
 
     this.status = PuzzleBoardStatus.IDLE;

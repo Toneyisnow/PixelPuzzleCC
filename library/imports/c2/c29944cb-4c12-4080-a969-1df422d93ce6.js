@@ -144,6 +144,15 @@ var PuzzleBoardProvider = function () {
 
             return characterMatrix;
         }
+    }, {
+        key: 'isMetrixDeadlock',
+        value: function isMetrixDeadlock() {
+
+            return false;
+        }
+    }, {
+        key: 'isMetrixMissingChar',
+        value: function isMetrixMissingChar() {}
 
         // When player choose character on the position
 
@@ -170,7 +179,7 @@ var PuzzleBoardProvider = function () {
                 var connectionPoints = this.connectCharacters(this.board.lastSelectedPosition, position);
                 if (connectionPoints && connectionPoints.length > 0) {
 
-                    // Remove the characters 
+                    // Remove the characters
                     this.clearCharacterAt(this.board.lastSelectedPosition);
                     this.clearCharacterAt(position);
                     this.board.status = PuzzleBoardStatus.IDLE;
