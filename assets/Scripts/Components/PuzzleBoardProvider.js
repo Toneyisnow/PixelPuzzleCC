@@ -49,10 +49,16 @@ class PuzzleBoardProvider {
         this.board.width = size.x;
         this.board.height = size.y;
 
-        var appearingCharacters = this.generateAppearingChars();
-        console.log('PuzzleBoardProvider: appearingCharacters:', appearingCharacters);
+        this.board.validTargetCharacters = this.composeValidTargetChars();
+        this.board.targetCharacters = this.composeTargetChars();
 
-        this.board.characterMatrix = this.generateMatrix(appearingCharacters);
+        var appearingCharacterList = this.generateAppearingChars(this.board.targetCharacters);
+        for(var i = 0; i < appearingCharacterList.length; i++) {
+            this.board.pushCharacter(appearingCharacterList[i]);
+        }
+        console.log('PuzzleBoardProvider: puzzleCharacters:', this.board.puzzleCharacters);
+
+        this.board.characterMatrix = this.generateMatrix(this.board.puzzleCharacters);
         console.log('PuzzleBoardProvider: matrix:', this.board.characterMatrix);
 
         return this.board;
@@ -63,7 +69,29 @@ class PuzzleBoardProvider {
         return cc.v2(this.board.width, this.board.height);
     }
 
-    generateAppearingChars() {
+    composeValidTargetChars() {
+
+        var targetCharacters = [];
+
+        let lines = this.puzzleDefinition.selectedLines;
+        for (var i = 0; i < lines.length; ++i) {
+            for (var j = 0; j < this.poemDefinition.columnCount; ++j) {
+
+                var charIndex = i * this.poemDefinition.columnCount + j;
+                if (this.puzzleDefinition.isUncoveredChar(charIndex)) {
+                    continue;
+                }
+
+                var characterId = this.poemDefinition.content[lines[i]][j];
+                targetCharacters.push(characterId);
+            }
+        }
+
+        console.log('PuzzleBoardProvider: validTargetCharacters:', targetCharacters);
+        return targetCharacters;
+    }
+
+    composeTargetChars() {
 
         var targetCharacters = [];
 
@@ -88,7 +116,11 @@ class PuzzleBoardProvider {
         }
 
         console.log('PuzzleBoardProvider: targetCharacters:', targetCharacters);
+        return targetCharacters;
+    }
 
+    generateAppearingChars(targetCharacters) {
+       
         var appearingChars = [];
         for (var i = 0; i < targetCharacters.length; ++i) {
 
@@ -103,7 +135,19 @@ class PuzzleBoardProvider {
         return appearingChars;
     }
 
-    generateMatrix(appearingCharacters) {
+    generateAndEnsureMatrix(puzzleCharacters) {
+
+        while(true) {
+
+            var matrix = generateMatrix(puzzleCharacters);
+            if (!this.isMatrixDeadlock(matrix)) {
+                return matrix;
+            }
+        }
+        return undefined;
+    }
+
+    generateMatrix(puzzleCharacters) {
 
         //var characterMatrix = new Array(this.board.width);
         var characterMatrix = [];
@@ -113,32 +157,114 @@ class PuzzleBoardProvider {
             characterMatrix[i] = [];
         }
 
-        for (var i = 0; i < appearingCharacters.length; ++i) {
-
-            var characterId = appearingCharacters[i];
-
-            var x = Utils.randomInteger(this.board.width) + 1;
-            var y = Utils.randomInteger(this.board.height) + 1;
-
-            while(characterMatrix[x][y]) {
-                x = Utils.randomInteger(this.board.width) + 1;
-                y = Utils.randomInteger(this.board.height) + 1;
-            }
-
-            characterMatrix[x][y] = characterId;
+        for (var i = 0; i < puzzleCharacters.length; ++i) {
+            this.placeCharacterInMatrix(puzzleCharacters[i], characterMatrix);
         }
 
         return characterMatrix;
     }
 
-    isMetrixDeadlock() {
+    placeCharacterInMatrix(puzzleChar, matrix) {
 
+        if (!puzzleChar || !puzzleChar.characterId || !matrix) {
+            return cc.v2(-1, -1);
+        }
 
-        return false;
+        var x = Utils.randomInteger(this.board.width) + 1;
+        var y = Utils.randomInteger(this.board.height) + 1;
+
+        while(matrix[x][y]) {
+            x = Utils.randomInteger(this.board.width) + 1;
+            y = Utils.randomInteger(this.board.height) + 1;
+        }
+
+        matrix[x][y] = puzzleChar;
+        puzzleChar.position = cc.v2(x, y);
     }
 
-    isMetrixMissingChar() {
+    // Check whether need to shuffle, and return the shuffled new puzzle characters if needed
+    checkShuffle() {
 
+        var newMatrix = [];
+        var hasShuffled = false;
+
+        var missingChars = checkBoardMissingChar();
+        if (missingChars && missingChars.length > 0) {
+            for(var i = 0; i < missingChars.length; i++) {
+
+                // Add the missing char into the matrix
+                var missingChar = this.board.pushCharacter(missingChars[i]);
+                this.placeCharacterInMatrix(missingChar, this.board.matrix);
+            }
+
+            newMatrix = this.generateAndEnsureMatrix(this.board.puzzleCharacters);
+            hasShuffled = true;
+        }
+
+        if (this.isMatrixDeadlock(this.board.matrix)) {
+
+            newMatrix = this.generateAndEnsureMatrix(this.board.puzzleCharacters);
+            hasShuffled = true;
+        }
+
+        if (!hasShuffled) {
+            return undefined;
+        }
+
+        this.board.matrix = newMatrix;
+        return this.board.puzzleCharacters;
+    }
+
+    isMatrixDeadlock(matrix) {
+
+        for(var i = 1; i <= this.board.width; i++) {
+            for(var j = 1; j <= this.board.height; j++) {
+            
+                for(var ii = 1; ii <= this.board.width; ii++) {
+                    for(var jj = 1; jj <= this.board.height; jj++) {
+                    
+                        if (i == ii && j == jj) {
+                            continue;
+                        }
+
+                        var charA = matrix[i, j];
+                        var charB = matrix[ii, jj];
+                        
+                        if (this.areCharactersMatching(charA, charB)) {
+
+                            var connect = this.connectCharacters(charA, charB)
+                            if (connect && connect.length > 0) {
+                                return false;
+                            }
+                        }
+                    }
+                }        
+            }
+        }
+
+        return true;
+    }
+
+    checkBoardMissingChar() {
+
+        var missingChars = [];
+        for (var i = 0; i < this.board.validTargetCharacters.length; ++i) {
+
+            var characterId = this.board.validTargetCharacters[i];
+            var formula = this.stageDefinition.findFormulaDefinition(characterId);
+            if (formula) {
+
+                if (!this.getCharacter(formula.sourceCharacterA)) {
+                    missingChars.push(formula.sourceCharacterA);
+                }
+                
+                if (!this.getCharacter(formula.sourceCharacterB)) {
+                    missingChars.push(formula.sourceCharacterB); 
+                }
+            }
+        }
+
+        return missingChars;
     }
     
     // When player choose character on the position
@@ -168,7 +294,6 @@ class PuzzleBoardProvider {
                 this.clearCharacterAt(this.board.lastSelectedPosition);
                 this.clearCharacterAt(position);
                 this.board.status = PuzzleBoardStatus.IDLE;
-
                 this.handler.onConnected(position, this.board.lastSelectedPosition, connectionPoints, matchingFormula.targetCharacter);
             } else {
 
@@ -331,6 +456,33 @@ class PuzzleBoardProvider {
         if (character && this.board.characterMatrix[position.x]) {
             this.board.characterMatrix[position.x][position.y] = undefined;
         }
+
+        // Remove from the appearing chars
+        if (character) {
+            for(var i = 0; i < this.board.puzzleCharacters.length; i++) {
+                if (character.uniqueId == this.board.puzzleCharacters[i].uniqueId) {
+                    this.board.puzzleCharacters.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
+
+    // Check whether a given character exsits in the board, if Yes, return the position
+    getCharacter(characterId) {
+
+        for(var i = 1; i <= this.board.width; i++) {
+            for(var j = 1; j <= this.board.height; j++) {
+
+                var position = cc.v2(i, j);
+                var charId = this.getCharacterAt();
+                if (charId && charId.characterId && charId.characterId == characterId) {
+                    return position;
+                }
+            }
+        }
+
+        return undefined;
     }
 
     getCharacterAt(position) {
@@ -376,4 +528,14 @@ class PuzzleBoardProvider {
 
 };
 
+class ShuffleResult {
+
+    constructor() {
+
+        this.shuffleDict = {};
+        this.newCharacters = [];
+    }
+};
+
 cc.PuzzleBoardProvider = PuzzleBoardProvider;
+cc.ShuffleResult = ShuffleResult;

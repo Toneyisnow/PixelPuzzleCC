@@ -50,17 +50,16 @@ class GlobalStorage {
         cc.sys.localStorage.removeItem(key);
     }
     
-    static loadCharacterSpriteFrame(characterId, i, j, onLoadedCallback) {
+    static loadCharacterSpriteFrame(characterId, character, onLoadedCallback) {
     
         console.log('loadCharacterSpriteFrame: characterId = ', characterId);
         cc.loader.loadRes("characters/chars_fzlb", cc.SpriteAtlas, function (err, atlas) {
             
             var frame = atlas.getSpriteFrame('c_' + characterId);
             
-            onLoadedCallback(frame, i, j);
+            onLoadedCallback(frame, i, j, character);
         });
     }
-    
 };
 
 module.exports = GlobalStorage;

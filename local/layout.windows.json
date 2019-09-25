@@ -103,7 +103,9 @@
         "cocos-services",
         "scene"
       ]
-    }
+    },
+    "window-1569452080879": {},
+    "worker": {}
   },
   "panels": {
     "builder": {

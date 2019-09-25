@@ -178,9 +178,16 @@ cc.Class({
         cc.director.loadScene("MainGameScene");
     },
 
-    onAllClear: function() {
+    onAllClear: function(isClear) {
     
-        console.log('MainGameScene: onAllClear!!');
+        if (isClear) {
+            console.log('MainGameScene: onAllClear!!');
+        } else {
+            var puzzleBoardNodeRenderer = self.puzzleBoardNode.getComponent('PuzzleBoardRenderer');
+            puzzleBoardNodeRenderer.check();
+        
+        }
+
     },
 
 

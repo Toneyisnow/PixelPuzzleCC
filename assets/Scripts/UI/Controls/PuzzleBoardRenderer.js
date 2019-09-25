@@ -106,9 +106,7 @@ cc.Class({
         
         this.boardProvider = new cc.PuzzleBoardProvider(this);
         this.boardProvider.createBoard(this.stageDefinition);
-        
     },
-
 
     onLoad () {
         
@@ -118,15 +116,27 @@ cc.Class({
         for (var i = 1; i <= size.x; ++i) {
             for (var j = 1; j <= size.y; ++j) {
         
-                var characterId = this.boardProvider.getCharacterAt(cc.v2(i, j));
+                var character = this.boardProvider.getCharacterAt(cc.v2(i, j));
                 
-                if (characterId) {
-                    
-                    console.log('got character: ', i, j, characterId);
-                    cc.GlobalStorage.loadCharacterSpriteFrame(characterId, i, j, function(characterSpriteFrame, ii, jj) {
+                if (character) {
+                    this.renderPuzzleNodeToBoard(character, this.boardRootNode);
+                }
+            }
+        }
+    },
+    
+    renderPuzzleNodeToBoard(character, boardNode) {
+
+        if (!character) {
+            return undefined;
+        }
+
+        var self = this;        
+        console.log('Rendering node with character: ', character.position.x, character.position.y, character.uniqueId, character.characterId);
+        cc.GlobalStorage.loadCharacterSpriteFrame(character.characterId, character, function(characterSpriteFrame, chara) {
         
                         var node = new cc.Node();
-                        node.name = 'char_' + ii + '_' + jj;
+                        node.name = this.getCharacterKey(chara);
                         
                         let charSprite = node.addComponent(cc.Sprite);
                         charSprite.spriteFrame = characterSpriteFrame;
@@ -137,7 +147,7 @@ cc.Class({
                         //var posX = -160 + ii * 64;
                         //var posY = 226 - jj * 64;
                         
-                        node.position = self.convertToPixelPosition(cc.v2(ii, jj));
+                        node.position = self.convertToPixelPosition(chara.position);
                         node.scale = 0.5;
                         // node.tag = cc.v2(ii, jj);
                         // node.on(cc.Node.EventType.TOUCH_END, this.onBoardClickedAt, this);
@@ -153,27 +163,87 @@ cc.Class({
                         // button.clickEvents.push(clickEventHandler);
                         
                         let puzzleNode = node.addComponent(cc.PuzzleNodeRenderer);
-                        puzzleNode.position = cc.v2(ii, jj);
+                        puzzleNode.character = chara;
                         puzzleNode.callbackNode = self.node;
                         puzzleNode.callbackComponentName = "PuzzleBoardRenderer";
                         puzzleNode.callbackHandlerName = "onBoardClickedAt";
                         
-                        self.boardRootNode.addChild(node);
+                        boardNode.addChild(node);
                     });
-                }
-            }
-        }
-        
     },
-    
+
     start () {
 
     },
     
+    getCharacterKey(character) {
+
+        return 'char_' + character.uniqueId + '_' + character.characterId;
+    },
+
+    ///getKeyforPosition(position) {
+    ///    return 'char_' + position.x + '_' + position.y;
+    ///},
+
     getNodeAtPosition(position) {
         
-        var nodeName = 'char_' + position.x + '_' + position.y;
-        return this.boardRootNode.getChildByName(nodeName);
+        var subNodes = this.boardRootNode.children;
+        for(var i = 0; i < subNodes.length; i++) {
+
+            var subNode = subNodes[i];
+            var puzzleNode = subNode.getComponent("cc.PuzzleNodeRenderer");
+            if (!puzzleNode || !puzzleNode.character || !puzzleNode.character.position) {
+                continue;
+            }
+
+            if (cc.Utils.areSameVec(puzzleNode.character.position, position)) {
+                return subNode;
+            }
+        }
+        return undefined;
+    },
+
+    getNodeByUniqueId(unieuqId) {
+        var subNodes = this.boardRootNode.children;
+        for(var i = 0; i < subNodes.length; i++) {
+
+            var subNode = subNodes[i];
+            var puzzleNode = subNode.getComponent("cc.PuzzleNodeRenderer");
+            if (!puzzleNode || !puzzleNode.character) {
+                continue;
+            }
+
+            if (puzzleNode.character.uniqueId == uniqueId) {
+                return subNode;
+            }
+        }
+        return undefined;
+    },
+
+    getNodeByCharacterId(charId) {
+        var subNodes = this.boardRootNode.children;
+        for(var i = 0; i < subNodes.length; i++) {
+
+            var subNode = subNodes[i];
+            var puzzleNode = subNode.getComponent("cc.PuzzleNodeRenderer");
+            if (!puzzleNode || !puzzleNode.character) {
+                continue;
+            }
+
+            if (puzzleNode.character.characterId == charId) {
+                return subNode;
+            }
+        }
+        return undefined;
+    },
+
+    updateNodePosition(characterNode, newPosition) {
+        var puzzleNode = characterNode.getComponent("cc.PuzzleNodeRenderer");
+        if (!puzzleNode || !puzzleNode.character) {
+            continue;
+        }
+        
+        puzzleNode.character.position = newPosition;
     },
 
     onBoardClickedAt: function (event, customEventData) {
@@ -302,6 +372,31 @@ cc.Class({
         this.playAnimationMergeChars(firstNode, node, lineNodes, function() {
             self.node.emit('receivedCharacter', targetChar);
         });
+    },
+
+    checkAndMakeShuffle: function () {
+
+        var shuffledCharacters = this.boardProvider.checkShuffle();
+        if (!shuffledCharacters || shuffledCharacters.length == 0) {
+            return;
+        }
+        
+        // Need to udpate the board to show new board
+        for(var i = 0; i < shuffledCharacters.length; i++) {
+
+            var character = shuffledCharacters[i];
+            var existingNode = this.getNodeByUniqueId(character.uniqueId);
+            if (existingNode) {
+                // The Node is an existing node, make a move animation
+                var newPosition = self.convertToPixelPosition(character.position);
+                existingNode.runAction(cc.moveTo(0.3, newPosition));
+                this.updateNodePosition(existingNode, newPosition);
+
+            } else {
+                // The Node is newly added, render it to the board
+                this.renderPuzzleNodeToBoard(character, this.boardRootNode);
+            }
+        }
     },
 
     createLinePrefab: function(posA, posB) {

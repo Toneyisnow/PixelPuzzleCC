@@ -171,9 +171,7 @@ cc.Class({
                     this.setCharUncoveredEffect(anchor, true);
                 }
                 
-                if (!this.isBoardAllClear()) {
-                    this.node.emit('allclear');
-                }
+                this.node.emit('allclear', this.isBoardAllClear());
                 
                 return;
             }                
