@@ -106,12 +106,7 @@ cc.Class({
         
         this.boardProvider = new cc.PuzzleBoardProvider(this);
         this.boardProvider.createBoard(this.stageDefinition);
-    },
 
-    onLoad () {
-        
-        var self = this;
-        
         var size = this.boardProvider.getBoardSize();
         for (var i = 1; i <= size.x; ++i) {
             for (var j = 1; j <= size.y; ++j) {
@@ -119,10 +114,17 @@ cc.Class({
                 var character = this.boardProvider.getCharacterAt(cc.v2(i, j));
                 
                 if (character) {
-                    this.renderPuzzleNodeToBoard(character, this.boardRootNode);
+                    self.renderPuzzleNodeToBoard(character, this.boardRootNode);
                 }
             }
         }
+    },
+
+    onLoad () {
+        
+        var self = this;
+        
+        
     },
     
     renderPuzzleNodeToBoard(character, boardNode) {
@@ -136,7 +138,7 @@ cc.Class({
         cc.GlobalStorage.loadCharacterSpriteFrame(character.characterId, character, function(characterSpriteFrame, chara) {
         
                         var node = new cc.Node();
-                        node.name = this.getCharacterKey(chara);
+                        node.name = self.getCharacterKey(chara);
                         
                         let charSprite = node.addComponent(cc.Sprite);
                         charSprite.spriteFrame = characterSpriteFrame;
@@ -187,16 +189,25 @@ cc.Class({
 
     getNodeAtPosition(position) {
         
+        // console.log("start getNodeAtPosition:", position.x, position.y);
         var subNodes = this.boardRootNode.children;
         for(var i = 0; i < subNodes.length; i++) {
 
             var subNode = subNodes[i];
-            var puzzleNode = subNode.getComponent("cc.PuzzleNodeRenderer");
+            var puzzleNode = subNode.getComponent(cc.PuzzleNodeRenderer);
+            if (!puzzleNode) {
+                //// console.log("puzzleNode is null.");
+                continue;
+            }
+            
             if (!puzzleNode || !puzzleNode.character || !puzzleNode.character.position) {
                 continue;
             }
 
-            if (cc.Utils.areSameVec(puzzleNode.character.position, position)) {
+            //// console.log("got node at postion. character position:", puzzleNode.character.position.x, puzzleNode.character.position.y);
+        
+            if (Utils.areSameVec(puzzleNode.character.position, position)) {
+                //// console.log("got node at position: ", position.x, position.y);
                 return subNode;
             }
         }
@@ -208,7 +219,7 @@ cc.Class({
         for(var i = 0; i < subNodes.length; i++) {
 
             var subNode = subNodes[i];
-            var puzzleNode = subNode.getComponent("cc.PuzzleNodeRenderer");
+            var puzzleNode = subNode.getComponent(cc.PuzzleNodeRenderer);
             if (!puzzleNode || !puzzleNode.character) {
                 continue;
             }
@@ -225,7 +236,7 @@ cc.Class({
         for(var i = 0; i < subNodes.length; i++) {
 
             var subNode = subNodes[i];
-            var puzzleNode = subNode.getComponent("cc.PuzzleNodeRenderer");
+            var puzzleNode = subNode.getComponent(cc.PuzzleNodeRenderer);
             if (!puzzleNode || !puzzleNode.character) {
                 continue;
             }
@@ -238,9 +249,9 @@ cc.Class({
     },
 
     updateNodePosition(characterNode, newPosition) {
-        var puzzleNode = characterNode.getComponent("cc.PuzzleNodeRenderer");
+        var puzzleNode = characterNode.getComponent(cc.PuzzleNodeRenderer);
         if (!puzzleNode || !puzzleNode.character) {
-            continue;
+            return;
         }
         
         puzzleNode.character.position = newPosition;
@@ -256,9 +267,9 @@ cc.Class({
             return;
         }
         
-        var position = customEventData;
+        var character = customEventData;
         
-        this.boardProvider.takeActionAt(position);
+        this.boardProvider.takeActionAt(character.position);
     },
 
     // --------------- Callbacks from Provider ---------------
@@ -285,7 +296,7 @@ cc.Class({
         var node = this.getNodeAtPosition(position);
         if (node) {
         
-            console.log('Got node on ', position.x, position.y);
+            // console.log('Got node on ', position.x, position.y);
             
             // Play animation
             node.runAction(cc.scaleTo(0.2, 0.5));
@@ -298,7 +309,7 @@ cc.Class({
         var firstNode = this.getNodeAtPosition(firstPosition);
         if (firstNode) {
         
-            console.log('Got node on ', firstPosition.x, firstPosition.y);
+            // console.log('Got node on ', firstPosition.x, firstPosition.y);
             
             // Play animation
             firstNode.runAction(cc.scaleTo(0.2, 0.5));
@@ -319,7 +330,7 @@ cc.Class({
         var node = this.getNodeAtPosition(position);
         if (node) {
         
-            console.log('Got node on ', position.x, position.y);
+            // console.log('Got node on ', position.x, position.y);
             
             // Play animation
             node.runAction(blinkAnimation);
@@ -332,7 +343,7 @@ cc.Class({
         var firstNode = this.getNodeAtPosition(firstPosition);
         if (firstNode) {
         
-            console.log('Got node on ', firstPosition.x, firstPosition.y);
+            // console.log('Got node on ', firstPosition.x, firstPosition.y);
             
             // Play animation
             firstNode.runAction(blinkAnimation2);

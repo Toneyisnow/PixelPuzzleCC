@@ -127,6 +127,10 @@ cc.Class({
         var hintBoardRenderer = self.hintBoardNode.getComponent('HintBoardRenderer');
         hintBoardRenderer.init(self.stageDefinition);
         
+        //var testRenderer = self.hintBoardNode.getComponent('PuzzleBoardRenderer');
+        //testRenderer.init(self.stageDefinition);
+        
+
         self.anchorHintBoard.addChild(self.hintBoardNode);
         self.hintBoardNode.on('allclear', self.onAllClear);
         
@@ -147,11 +151,18 @@ cc.Class({
                 break;
             }
             default: {
+                break;
             }
         }
-        
+
+        boardPrefab = self.puzzleBoard_Tiny;
+        console.log('boardPrefab type is:', typeof boardPrefab);
+
         self.puzzleBoardNode = cc.instantiate(boardPrefab);
+        console.log('puzzleBoardNode:', typeof self.puzzleBoardNode);
+
         var puzzleBoardNodeRenderer = self.puzzleBoardNode.getComponent('PuzzleBoardRenderer');
+        
         puzzleBoardNodeRenderer.init(self.stageDefinition);
         
         self.anchorPuzzleBoard.addChild(self.puzzleBoardNode);
@@ -183,8 +194,8 @@ cc.Class({
         if (isClear) {
             console.log('MainGameScene: onAllClear!!');
         } else {
-            var puzzleBoardNodeRenderer = self.puzzleBoardNode.getComponent('PuzzleBoardRenderer');
-            puzzleBoardNodeRenderer.check();
+            var puzzleBoardNodeRenderer = this.puzzleBoardNode.getComponent('PuzzleBoardRenderer');
+            puzzleBoardNodeRenderer.checkAndMakeShuffle();
         
         }
 

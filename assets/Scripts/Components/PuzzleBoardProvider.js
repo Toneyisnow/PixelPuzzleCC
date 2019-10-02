@@ -309,12 +309,13 @@ class PuzzleBoardProvider {
 
         var charA = this.getCharacterAt(posA);
         var charB = this.getCharacterAt(posB);
-
         if (!charA || !charB) {
             return false;
         }
 
-        return this.stageDefinition.matchFormulaDefinition(charA, charB);
+        console.log("areCharactersMatching: charA:", charA.characterId, " charB:", charB.characterId);
+
+        return this.stageDefinition.matchFormulaDefinition(charA.characterId, charB.characterId);
     }
 
     connectCharacters(posA, posB) {
@@ -528,14 +529,4 @@ class PuzzleBoardProvider {
 
 };
 
-class ShuffleResult {
-
-    constructor() {
-
-        this.shuffleDict = {};
-        this.newCharacters = [];
-    }
-};
-
 cc.PuzzleBoardProvider = PuzzleBoardProvider;
-cc.ShuffleResult = ShuffleResult;

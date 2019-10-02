@@ -57,7 +57,7 @@ class GlobalStorage {
             
             var frame = atlas.getSpriteFrame('c_' + characterId);
             
-            onLoadedCallback(frame, i, j, character);
+            onLoadedCallback(frame, character);
         });
     }
 };

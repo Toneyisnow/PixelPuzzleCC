@@ -56,10 +56,13 @@
     "_components": [
       {
         "__id__": 25
+      },
+      {
+        "__id__": 26
       }
     ],
     "_prefab": {
-      "__id__": 26
+      "__id__": 27
     },
     "_opacity": 255,
     "_color": {
@@ -930,6 +933,32 @@
       "__uuid__": "bff168e1-9e67-4fa9-b841-a8853cfc9017"
     },
     "hintBoard": null,
+    "_id": ""
+  },
+  {
+    "__type__": "76a0a6tC1tEgonnMTeAGyKL",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "boardWidth": 1,
+    "boardHeight": 1,
+    "poemDefinition": null,
+    "puzzleDefinition": null,
+    "stageDefinition": null,
+    "anchorStartPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "anchorInterval": 64,
+    "puzzleBoardPrefab": null,
+    "connectLineHorizon": null,
+    "connectLineVertical": null,
+    "boardProvider": null,
+    "boardRootNode": null,
     "_id": ""
   },
   {

@@ -126,13 +126,16 @@ cc.Class({
                 var characterId = this.poemDefinition.content[lines[i]][j];
                 this.hintBoard.pushCharacter(characterId);
                 
-                cc.GlobalStorage.loadCharacterSpriteFrame(characterId, i, j, function(characterSpriteFrame, ii, jj) {
+                var character = new cc.PuzzleCharacter();
+                character.characterId = characterId;
+                character.position = cc.v2(i, j);
+                cc.GlobalStorage.loadCharacterSpriteFrame(characterId, character, function(characterSpriteFrame, chara) {
         
                     var node = new cc.Node();
                     let charSprite = node.addComponent(cc.Sprite);
                     charSprite.spriteFrame = characterSpriteFrame;
                     
-                    var charIndex = ii * columnCount + jj;
+                    var charIndex = chara.position.x * columnCount + chara.position.y;
                     var anchor = self.characterAnchors[charIndex];
                     console.log('anchor position:', anchor.position.x, anchor.position.y);
                     
@@ -160,22 +163,29 @@ cc.Class({
     onReceivedCharacter: function(characterId) {
         
         console.log('HintBoardRenderer onReceivedCharacter: ', characterId);
+        var foundChar = -1;
         for (var i = 0; i < this.hintBoard.charCount; i++) {
-            
             // console.log('HintBoardRenderer: comparing char:', this.hintBoard.charList[i], characterId);
             if (this.hintBoard.charList[i] == characterId && !this.hintBoard.isUncoveredAt(i)) {
-                this.hintBoard.setUncoveredAt(i);
-                
-                var anchor = this.characterAnchors[i];
-                if (anchor) {
-                    this.setCharUncoveredEffect(anchor, true);
-                }
-                
-                this.node.emit('allclear', this.isBoardAllClear());
-                
-                return;
+
+                foundChar = i;
+                break;
             }                
         }
+
+        if (foundChar < 0) {
+            return;
+        }
+
+        this.hintBoard.setUncoveredAt(i);
+                
+        var anchor = this.characterAnchors[i];
+        if (anchor) {
+            this.setCharUncoveredEffect(anchor, true);
+        }
+                
+        this.node.emit('allclear', this.isBoardAllClear());
+        return;
     },
     
     isBoardAllClear: function() {

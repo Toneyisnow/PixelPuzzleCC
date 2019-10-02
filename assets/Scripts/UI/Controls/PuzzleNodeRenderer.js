@@ -13,10 +13,10 @@ let PuzzleNodeRenderer = cc.Class({
 
     properties: {
         
-        position: {
-            default: cc.v2(0, 0),
-            type:cc.v2
-        },            
+        //position: {
+        //    default: cc.v2(0, 0),
+        //    type:cc.v2
+        //},            
         
         callbackNode: {
             default: null,
@@ -57,7 +57,7 @@ let PuzzleNodeRenderer = cc.Class({
         clickEventHandler.target = this.callbackNode; //这个 node 节点是你的事件处理代码组件所属的节点，这里就是Button2
         clickEventHandler.component = this.callbackComponentName;//这个是脚本文件名
         clickEventHandler.handler = this.callbackHandlerName; //回调函名称
-        clickEventHandler.customEventData = this.position; //用户数据
+        clickEventHandler.customEventData = this.character; //用户数据
         
         let button = this.node.addComponent(cc.Button); //获取cc.Button组件
         button.clickEvents.push(clickEventHandler);
