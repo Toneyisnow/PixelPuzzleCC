@@ -51,3 +51,9 @@ temp/
 temp
 
 
+tools/StageGenerator/.vs/
+tools/StageGenerator/bin/
+tools/StageGenerator/obj/
+tools/StageGenerator/packages/
+
+
