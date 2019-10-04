@@ -62,6 +62,16 @@ class PuzzleBoard {
         }
     }
 
+    clearValidTargetCharacter(characterId) {
+
+        for(var i = 0; i < this.validTargetCharacters.length; i++) {
+            if (this.validTargetCharacters[i] == characterId) {
+                this.validTargetCharacters.splice(i, 1);
+                return;
+            }
+        }
+    }
+
     getCharacterByUniqueId(uniqueId) {
         for(var i = 0; i < this.puzzleCharacters.length; i++) {
             if (this.puzzleCharacters.uniqueId == uniqueId) {

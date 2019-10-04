@@ -509,16 +509,6 @@
     "meta": 1565844165286,
     "relativePath": "Images/control/puzzle-brick-frame.png"
   },
-  "7cd6d366-b033-4a70-a02a-76c3a9ae34af": {
-    "asset": 1565844114952,
-    "meta": 1565844165339,
-    "relativePath": "Images/control/puzzle-panel-large.png"
-  },
-  "7b7cd30f-b46b-4428-aff3-5931cce2391e": {
-    "asset": 1565844114952,
-    "meta": 1565844165357,
-    "relativePath": "Images/control/puzzle-panel-huge.png"
-  },
   "c4d846f7-5ffc-467f-91e1-b879b8744720": {
     "asset": 1565844114952,
     "meta": 1565844165386,
@@ -620,13 +610,13 @@
     "relativePath": "Prefabs/hintBoard_4_7.prefab"
   },
   "b44ba005-c560-474e-babb-e7ce63c0f5df": {
-    "asset": 1565844114971,
-    "meta": 1565844165541,
+    "asset": 1570224088212,
+    "meta": 1570224088228,
     "relativePath": "Prefabs/puzzleBoard_Huge.prefab"
   },
   "c4fd6245-29e5-4b66-8d88-4514a8b94fae": {
-    "asset": 1570222932582,
-    "meta": 1570222932598,
+    "asset": 1570223942642,
+    "meta": 1570223942660,
     "relativePath": "Prefabs/puzzleBoard_Large.prefab"
   },
   "49bbe8ac-fb5e-4429-835c-69cc3cd017d9": {
@@ -755,8 +745,8 @@
     "relativePath": "Scenes/helloworld.fire"
   },
   "4060470d-de5e-410e-a6ea-d5d6f1affde5": {
-    "asset": 1565851714010,
-    "meta": 1565851714016,
+    "asset": 1570225121957,
+    "meta": 1570225121967,
     "relativePath": "Scenes/MainGameScene.fire"
   },
   "96fff35b-6b4b-4b37-878a-67583bc738ad": {
@@ -874,16 +864,6 @@
     "meta": 1568398042747,
     "relativePath": "resources/stages/stage_105.json"
   },
-  "e78b92fa-a883-4c40-a636-676643c42956": {
-    "asset": 1569020233339,
-    "meta": 1569019297132,
-    "relativePath": "Scripts/Components/StageDefinition.js"
-  },
-  "7bb3b613-dfbf-4291-a15a-c4b3dcdc582a": {
-    "asset": 1569448461794,
-    "meta": 1569448919355,
-    "relativePath": "Scripts/Components/PuzzleBoard.js"
-  },
   "ee8c360d-55cf-40de-9f7c-f8bd8100e770": {
     "asset": 1569452690133,
     "meta": 1569452705685,
@@ -904,40 +884,10 @@
     "meta": 1570038045408,
     "relativePath": "Scripts/UI/Controls/PuzzleNodeRenderer.js"
   },
-  "c29944cb-4c12-4080-a969-1df422d93ce6": {
-    "asset": 1570038920140,
-    "meta": 1570039012992,
-    "relativePath": "Scripts/Components/PuzzleBoardProvider.js"
-  },
-  "76a0aead-0b5b-4482-89e7-3137801b228b": {
-    "asset": 1570040038480,
-    "meta": 1570040054615,
-    "relativePath": "Scripts/UI/Controls/PuzzleBoardRenderer.js"
-  },
   "5af22814-9dca-416b-ac87-a4b7259372e3": {
     "asset": 1570040791723,
     "meta": 1570040804883,
     "relativePath": "Scripts/UI/Controls/HintBoardRenderer.js"
-  },
-  "0b9f549a-e549-4277-8ef9-85c13fecb9c2": {
-    "asset": 1570041399399,
-    "meta": 1570041407829,
-    "relativePath": "Scripts/UI/MainGameScene.js"
-  },
-  "d3856c42-11bf-4815-97da-76c02f6cc22e": {
-    "asset": 1570041668583,
-    "meta": 1570222343758,
-    "relativePath": "resources/stages/stage_106.json"
-  },
-  "8a580a97-3635-4d6e-9542-3ae0d9b143ed": {
-    "asset": 1570041668584,
-    "meta": 1570222343761,
-    "relativePath": "resources/stages/stage_107.json"
-  },
-  "eeb6c03b-1061-4d10-b9c9-dfc25514f054": {
-    "asset": 1570041668584,
-    "meta": 1570222343763,
-    "relativePath": "resources/stages/stage_108.json"
   },
   "3c034a91-3f0f-4333-a632-dd0536e181ab": {
     "asset": 1570041668584,
@@ -948,5 +898,65 @@
     "asset": 1565844114981,
     "meta": 1570222385223,
     "relativePath": "resources/stages/stage_104.json"
+  },
+  "7cd6d366-b033-4a70-a02a-76c3a9ae34af": {
+    "asset": 1570223788384,
+    "meta": 1570223792224,
+    "relativePath": "Images/control/puzzle-panel-large.png"
+  },
+  "7b7cd30f-b46b-4428-aff3-5931cce2391e": {
+    "asset": 1570223788384,
+    "meta": 1570223792235,
+    "relativePath": "Images/control/puzzle-panel-huge.png"
+  },
+  "169938a0-77b1-46cb-818b-0ac86f1de31a": {
+    "asset": 1570223788384,
+    "meta": 1570223792295,
+    "relativePath": "Images/control/puzzle-panel-large-empty.png"
+  },
+  "0ada7560-1cd7-46cf-befe-540ff2bb2810": {
+    "asset": 1570223788384,
+    "meta": 1570223792307,
+    "relativePath": "Images/control/puzzle-panel-huge-empty.png"
+  },
+  "d3856c42-11bf-4815-97da-76c02f6cc22e": {
+    "asset": 1570224359414,
+    "meta": 1570224447451,
+    "relativePath": "resources/stages/stage_106.json"
+  },
+  "8a580a97-3635-4d6e-9542-3ae0d9b143ed": {
+    "asset": 1570224379814,
+    "meta": 1570224447452,
+    "relativePath": "resources/stages/stage_107.json"
+  },
+  "eeb6c03b-1061-4d10-b9c9-dfc25514f054": {
+    "asset": 1570224399710,
+    "meta": 1570224447453,
+    "relativePath": "resources/stages/stage_108.json"
+  },
+  "76a0aead-0b5b-4482-89e7-3137801b228b": {
+    "asset": 1570224532619,
+    "meta": 1570224627096,
+    "relativePath": "Scripts/UI/Controls/PuzzleBoardRenderer.js"
+  },
+  "0b9f549a-e549-4277-8ef9-85c13fecb9c2": {
+    "asset": 1570227297583,
+    "meta": 1570227311869,
+    "relativePath": "Scripts/UI/MainGameScene.js"
+  },
+  "7bb3b613-dfbf-4291-a15a-c4b3dcdc582a": {
+    "asset": 1570230322014,
+    "meta": 1570230407541,
+    "relativePath": "Scripts/Components/PuzzleBoard.js"
+  },
+  "c29944cb-4c12-4080-a969-1df422d93ce6": {
+    "asset": 1570230355544,
+    "meta": 1570230407597,
+    "relativePath": "Scripts/Components/PuzzleBoardProvider.js"
+  },
+  "e78b92fa-a883-4c40-a636-676643c42956": {
+    "asset": 1570230645125,
+    "meta": 1570230666039,
+    "relativePath": "Scripts/Components/StageDefinition.js"
   }
 }

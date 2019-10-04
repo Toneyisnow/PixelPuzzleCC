@@ -188,9 +188,13 @@ class PuzzleBoardProvider {
         var newMatrix = [];
         var hasShuffled = false;
 
-        var missingChars = checkBoardMissingChar();
+        var missingChars = this.checkBoardMissingChar();
         if (missingChars && missingChars.length > 0) {
+
+            console.log("checkShuffle: Missing character found.");
             for(var i = 0; i < missingChars.length; i++) {
+
+                console.log("Missing character: ", missingChars[i]);
 
                 // Add the missing char into the matrix
                 var missingChar = this.board.pushCharacter(missingChars[i]);
@@ -227,8 +231,8 @@ class PuzzleBoardProvider {
                             continue;
                         }
 
-                        var charA = matrix[i, j];
-                        var charB = matrix[ii, jj];
+                        var charA = matrix[i][j];
+                        var charB = matrix[ii][jj];
                         
                         if (this.areCharactersMatching(charA, charB)) {
 
@@ -238,7 +242,7 @@ class PuzzleBoardProvider {
                             }
                         }
                     }
-                }        
+                }
             }
         }
 
@@ -293,6 +297,10 @@ class PuzzleBoardProvider {
                 // Remove the characters
                 this.clearCharacterAt(this.board.lastSelectedPosition);
                 this.clearCharacterAt(position);
+
+                // Remove the valid target character
+                this.board.clearValidTargetCharacter(matchingFormula.targetCharacter);
+
                 this.board.status = PuzzleBoardStatus.IDLE;
                 this.handler.onConnected(position, this.board.lastSelectedPosition, connectionPoints, matchingFormula.targetCharacter);
             } else {
@@ -476,7 +484,7 @@ class PuzzleBoardProvider {
             for(var j = 1; j <= this.board.height; j++) {
 
                 var position = cc.v2(i, j);
-                var charId = this.getCharacterAt();
+                var charId = this.getCharacterAt(position);
                 if (charId && charId.characterId && charId.characterId == characterId) {
                     return position;
                 }

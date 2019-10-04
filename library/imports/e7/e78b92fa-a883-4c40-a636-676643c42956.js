@@ -34,7 +34,7 @@ var StageDefinition = function () {
 
         this.formulaDefinitions = [];
 
-        this.targetCharaters = [];
+        this.targetCharacters = [];
     }
 
     // Load definition from JSON file
@@ -68,7 +68,36 @@ var StageDefinition = function () {
         }
     }, {
         key: 'collectTargetCharacters',
-        value: function collectTargetCharacters() {}
+        value: function collectTargetCharacters() {
+
+            var result = [];
+            var lines = this.puzzleDefinition.selectedLines;
+            var columnCount = this.poemDefinition.columnCount;
+
+            for (var i = 0; i < lines.length; ++i) {
+                for (var j = 0; j < columnCount; ++j) {
+
+                    var charIndex = i * columnCount + j;
+                    if (!this.puzzleDefinition.isUncoveredChar(charIndex)) {
+                        var characterId = this.poemDefinition.content[lines[i]][j];
+                        result.push(characterId);
+                    }
+                }
+            }
+
+            return result;
+        }
+    }, {
+        key: 'eraseTargetCharacter',
+        value: function eraseTargetCharacter(characterId) {
+            for (var i = 0; i < this.targetCharacters.length; i++) {
+                if (this.targetCharacters[i] == characterId) {
+                    //// del this.targetCharacters[i:i]
+                    this.targetCharacters.splice(i, 1);
+                    return;
+                }
+            }
+        }
     }], [{
         key: 'loadFromFile',
         value: function loadFromFile(stageId, callback, caller) {
@@ -110,6 +139,7 @@ var StageDefinition = function () {
                 });
             }
 
+            stage.targetCharacters = stage.collectTargetCharacters();
             return stage;
         }
     }]);

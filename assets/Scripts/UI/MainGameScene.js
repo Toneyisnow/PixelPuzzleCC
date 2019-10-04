@@ -63,6 +63,11 @@ cc.Class({
             type: cc.Button,
         },
         
+        btnFinish: {
+            default: null,
+            type: cc.Button,
+        },
+        
         stageId: 0,
         
         stageDefinition: {
@@ -97,7 +102,8 @@ cc.Class({
         
         this.btnBack.node.on("click", this.onBackToScene, this);
         this.btnRestart.node.on("click", this.onRefresh, this);
-        
+        this.btnFinish.node.on("click", this.onFinished, this);
+        this.btnFinish.node.zIndex = -10;
         
         console.log('onLoad: got selectedStageId', this.stageId);
         cc.StageDefinition.loadFromFile(this.stageId, this.onLoadWithDefinition, this);
@@ -105,7 +111,6 @@ cc.Class({
     },
 
     onLoadWithDefinition: function(self, definition) {
-        
         
         console.log('onLoadWithDefinition');
         
@@ -130,9 +135,8 @@ cc.Class({
         //var testRenderer = self.hintBoardNode.getComponent('PuzzleBoardRenderer');
         //testRenderer.init(self.stageDefinition);
         
-
         self.anchorHintBoard.addChild(self.hintBoardNode);
-        self.hintBoardNode.on('allclear', self.onAllClear);
+        self.hintBoardNode.on('allclear', self.onAllClear, self);
         
         // Add PuzzleBoard on the middle
         var boardPrefab = self.puzzleBoard_Tiny;
@@ -155,7 +159,6 @@ cc.Class({
             }
         }
 
-        boardPrefab = self.puzzleBoard_Tiny;
         console.log('boardPrefab type is:', typeof boardPrefab);
 
         self.puzzleBoardNode = cc.instantiate(boardPrefab);
@@ -177,8 +180,6 @@ cc.Class({
 
     },
 
-
-
     onBackToScene: function(handle) {
         
         cc.director.loadScene("SelectStageScene");
@@ -189,18 +190,24 @@ cc.Class({
         cc.director.loadScene("MainGameScene");
     },
 
-    onAllClear: function(isClear) {
-    
-        if (isClear) {
-            console.log('MainGameScene: onAllClear!!');
-        } else {
-            var puzzleBoardNodeRenderer = this.puzzleBoardNode.getComponent('PuzzleBoardRenderer');
-            puzzleBoardNodeRenderer.checkAndMakeShuffle();
+    onFinished: function(handle) {
         
-        }
-
+        cc.director.loadScene("SelectStageScene");
     },
 
+    onAllClear: function(isClear) {
+    
+        console.log("onAllClear: called.");
 
+        if (isClear) {
+            console.log('MainGameScene: onAllClear!!');
+            this.btnFinish.node.zIndex = 10;
+        } else {
+            
+            console.log('MainGameScene: check and make shuffle');
+            var puzzleBoardNodeRenderer = this.puzzleBoardNode.getComponent('PuzzleBoardRenderer');
+            puzzleBoardNodeRenderer.checkAndMakeShuffle();
+        }
+    },
     // update (dt) {},
 });

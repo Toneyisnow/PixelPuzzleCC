@@ -179,20 +179,37 @@
     "sync": false
   },
   {
-    "__type__": "f29ecQlJN9ChLNEe9CYCMBZ",
+    "__type__": "76a0a6tC1tEgonnMTeAGyKL",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "boardWidth": 1,
-    "boardHeight": 1,
+    "boardWidth": 8,
+    "boardHeight": 12,
     "poemDefinition": null,
     "puzzleDefinition": null,
     "stageDefinition": null,
-    "anchors": [],
-    "puzzleBoardPrefab": {},
+    "anchorStartPoint": {
+      "__type__": "cc.Vec2",
+      "x": -288,
+      "y": 416
+    },
+    "anchorInterval": 64,
+    "puzzleBoardPrefab": {
+      "__uuid__": "c4fd6245-29e5-4b66-8d88-4514a8b94fae"
+    },
+    "connectLineHorizon": {
+      "__uuid__": "ff9e2ecc-b52d-442e-a00c-afcaa9933a71"
+    },
+    "connectLineVertical": {
+      "__uuid__": "a0fbae49-85fc-421d-9d9b-f4d7781c6c9d"
+    },
+    "boardProvider": null,
+    "boardRootNode": {
+      "__id__": 1
+    },
     "_id": ""
   },
   {

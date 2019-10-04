@@ -100,7 +100,7 @@ class StageDefinition {
 
     collectTargetCharacters() {
 
-        result = [];
+        var result = [];
         let lines = this.puzzleDefinition.selectedLines;
         let columnCount = this.poemDefinition.columnCount;
 
@@ -108,7 +108,7 @@ class StageDefinition {
             for (var j = 0; j < columnCount; ++j) {
 
                 var charIndex = i * columnCount + j;
-                if (!self.puzzleDefinition.isUncoveredChar(charIndex)) {
+                if (!this.puzzleDefinition.isUncoveredChar(charIndex)) {
                     var characterId = this.poemDefinition.content[lines[i]][j];
                     result.push(characterId);
                 }
@@ -121,7 +121,8 @@ class StageDefinition {
     eraseTargetCharacter(characterId) {
         for(var i = 0; i < this.targetCharacters.length; i++) {
             if (this.targetCharacters[i] == characterId) {
-                del this.targetCharacters[i:i]
+                //// del this.targetCharacters[i:i]
+                this.targetCharacters.splice(i, 1);
                 return;
             }
         }

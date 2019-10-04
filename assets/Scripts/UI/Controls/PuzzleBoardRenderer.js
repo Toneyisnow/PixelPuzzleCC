@@ -285,7 +285,6 @@ cc.Class({
             // Play animation
             node.runAction(new cc.scaleTo(0.3, 0.6));
         }
-        
     },
     
     // The two characters not match, or use click the firstPosition again. Cancel them.
