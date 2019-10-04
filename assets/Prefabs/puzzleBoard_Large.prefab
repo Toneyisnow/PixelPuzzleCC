@@ -101,8 +101,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 36
+      "width": 1080,
+      "height": 1600
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -151,7 +151,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+      "__uuid__": "01a2cda2-299b-42b0-8019-ebdf6600fb00"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -173,7 +173,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "5005e426-c088-471c-960c-d044265f36da"
+      "__uuid__": "c4fd6245-29e5-4b66-8d88-4514a8b94fae"
     },
     "fileId": "e3tMnO471NG6GZ9i8hjyin",
     "sync": false
@@ -192,9 +192,7 @@
     "puzzleDefinition": null,
     "stageDefinition": null,
     "anchors": [],
-    "puzzleBoardPrefab": {
-      "__uuid__": "5005e426-c088-471c-960c-d044265f36da"
-    },
+    "puzzleBoardPrefab": {},
     "_id": ""
   },
   {
@@ -203,7 +201,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "5005e426-c088-471c-960c-d044265f36da"
+      "__uuid__": "c4fd6245-29e5-4b66-8d88-4514a8b94fae"
     },
     "fileId": "43Otbo2O1NeLFBKhYavBvs",
     "sync": false

@@ -150,7 +150,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "0c4b8372-2f44-4d97-a577-edf1b04b8f17"
+    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -184,22 +186,30 @@
       "__id__": 1
     },
     "_enabled": true,
-    "boardWidth": 1,
-    "boardHeight": 1,
+    "boardWidth": 7,
+    "boardHeight": 10,
     "poemDefinition": null,
     "puzzleDefinition": null,
     "stageDefinition": null,
     "anchorStartPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -256,
+      "y": 352
     },
     "anchorInterval": 64,
-    "puzzleBoardPrefab": null,
-    "connectLineHorizon": null,
-    "connectLineVertical": null,
+    "puzzleBoardPrefab": {
+      "__uuid__": "49bbe8ac-fb5e-4429-835c-69cc3cd017d9"
+    },
+    "connectLineHorizon": {
+      "__uuid__": "ff9e2ecc-b52d-442e-a00c-afcaa9933a71"
+    },
+    "connectLineVertical": {
+      "__uuid__": "a0fbae49-85fc-421d-9d9b-f4d7781c6c9d"
+    },
     "boardProvider": null,
-    "boardRootNode": null,
+    "boardRootNode": {
+      "__id__": 1
+    },
     "_id": ""
   },
   {
