@@ -5,7 +5,7 @@
     "title": [ "清", "明" ],
     "author": [ "杜", "牧" ],
     "line_count": 4,
-    "column_counnt": 7,
+    "column_count": 7,
     "content": [
       [ "清", "明", "时", "节", "雨", "纷", "纷" ],
       [ "路", "上", "行", "人", "欲", "断", "魂" ],
@@ -18,7 +18,7 @@
 
     "selected_lines": [ 0, 1 ],
     "uncovered_chars": [ 4, 8, 10 ],
-    "panel_size": 2,
+    "panel_size": 1,
     "noise_chars": []
   },
 

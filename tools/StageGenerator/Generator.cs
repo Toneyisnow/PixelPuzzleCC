@@ -32,7 +32,7 @@ namespace StageGenerator
 
             stage.Poem.Title = EncodeCharactersToUnicode(stage.Poem.Title);
             stage.Poem.Author = EncodeCharactersToUnicode(stage.Poem.Author);
-            
+
             for(int line = 0; line < stage.Poem.Content.Count; line++)
             {
                 stage.Poem.Content[line] = EncodeCharactersToUnicode(stage.Poem.Content[line]);
