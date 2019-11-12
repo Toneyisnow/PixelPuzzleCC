@@ -1,6 +1,6 @@
 {
   "poem": {
-    "id": "chunxiao",
+    "id": "chun_xiao",
     "title": [
       "6625",
       "6653"
@@ -49,9 +49,9 @@
       1
     ],
     "uncovered_chars": [
-      0,
-      2,
-      3
+      "0",
+      "2",
+      "3"
     ],
     "panel_size": 0,
     "noise_chars": []

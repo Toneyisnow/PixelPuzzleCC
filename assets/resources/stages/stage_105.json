@@ -10,7 +10,7 @@
       "7267"
     ],
     "line_count": 4,
-    "column_count": 7,
+    "column_count": 0,
     "content": [
       [
         "6e05",
@@ -56,11 +56,11 @@
       1
     ],
     "uncovered_chars": [
-      4,
-      8,
-      10
+      "4",
+      "8",
+      "10"
     ],
-    "panel_size": 1,
+    "panel_size": 2,
     "noise_chars": []
   },
   "formula": [

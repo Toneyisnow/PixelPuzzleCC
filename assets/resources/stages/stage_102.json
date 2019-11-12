@@ -49,10 +49,10 @@
       3
     ],
     "uncovered_chars": [
-      1,
-      7
+      "1",
+      "7"
     ],
-    "panel_size": 1,
+    "panel_size": 0,
     "noise_chars": []
   },
   "formula": [
@@ -80,6 +80,11 @@
       "72ad",
       "866b",
       "72ec"
+    ],
+    [
+      "9485",
+      "52fa",
+      "9493"
     ],
     [
       "6c35",
