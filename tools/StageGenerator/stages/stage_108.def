@@ -5,7 +5,7 @@
     "title": [ "出", "塞" ],
     "author": [ "王", "昌", "龄" ],
     "line_count": 4,
-    "column_counnt": 7,
+    "column_count": 7,
     "content": [
       [ "秦", "时", "明", "月", "汉", "时", "关" ],
       [ "万", "里", "长", "征", "人", "未", "还" ],
@@ -16,7 +16,7 @@
 
   "puzzle": {
     "selected_lines": [ 0, 1, 2, 3 ],
-    "uncovered_chars": [ 3, 7, 9, 11, 16, 18, 21, 22, 24, 25, ],
+    "uncovered_chars": [ 3, 7, 9, 11, 16, 18, 21, 22, 24, 25 ],
     "panel_size": 3,
     "noise_chars": [ "出", "故", "朋", "由" ]
   },

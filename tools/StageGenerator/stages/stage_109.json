@@ -14,7 +14,7 @@
       "8f7c"
     ],
     "line_count": 4,
-    "column_count": 0,
+    "column_count": 7,
     "content": [
       [
         "7af9",
@@ -62,9 +62,9 @@
       3
     ],
     "uncovered_chars": [
-      "9",
-      "12",
-      "22"
+      9,
+      12,
+      22
     ],
     "panel_size": 4,
     "noise_chars": [

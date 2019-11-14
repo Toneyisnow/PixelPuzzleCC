@@ -13,7 +13,7 @@
       "5c9b"
     ],
     "line_count": 4,
-    "column_count": 0,
+    "column_count": 5,
     "content": [
       [
         "677e",
@@ -53,8 +53,8 @@
       3
     ],
     "uncovered_chars": [
-      "5",
-      "11"
+      5,
+      11
     ],
     "panel_size": 3,
     "noise_chars": [
