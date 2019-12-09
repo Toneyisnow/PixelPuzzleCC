@@ -2,8 +2,8 @@
   "poem": {
 
     "id": "min_nong",
-    "title": [ "悯农" ],
-    "author": [ "李绅" ],
+    "title": [ "悯", "农" ],
+    "author": [ "李", "绅" ],
     "line_count": 4,
     "column_count": 5,
     "content": [
