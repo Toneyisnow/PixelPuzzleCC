@@ -35,7 +35,23 @@ namespace StageGenerator
 
             for(int line = 0; line < stage.Poem.Content.Count; line++)
             {
-                stage.Poem.Content[line] = EncodeCharactersToUnicode(stage.Poem.Content[line]);
+                List<int> uncoveredInLine = new List<int>();
+                stage.Poem.Content[line] = EncodeCharactersInContent(stage.Poem.Content[line], uncoveredInLine);
+
+                if(uncoveredInLine.Count > 0)
+                {
+                    for(int lineIndex = 0; lineIndex < stage.Puzzle.SelectedLines.Count; lineIndex++)
+                    {
+                        if(stage.Puzzle.SelectedLines[lineIndex] == line)
+                        {
+                            int lineStart = lineIndex * stage.Poem.ColumnCount;
+                            foreach(int uncovered in uncoveredInLine)
+                            {
+                                stage.Puzzle.UncoveredCharacters.Add(lineStart + uncovered);
+                            }
+                        }
+                    }
+                }
             }
 
             stage.Puzzle.NoiseCharacters = EncodeCharactersToUnicode(stage.Puzzle.NoiseCharacters);
@@ -45,12 +61,39 @@ namespace StageGenerator
                 stage.Formulas[line] = EncodeCharactersToUnicode(stage.Formulas[line]);
             }
 
-
             using (StreamWriter writer = new StreamWriter(outputFileName))
             {
                 writer.Write(JsonConvert.SerializeObject(stage, Formatting.Indented));
-
             }
+        }
+
+        private List<string> EncodeCharactersInContent(List<string> originList, List<int> uncoveredList)
+        {
+            List<string> resultList = new List<string>(originList.Count);
+
+            int index = 0;
+            foreach (string character in originList)
+            {
+                string ch = character;
+                if (character.StartsWith("*"))
+                {
+                    ch = character.Substring(1);
+                    uncoveredList.Add(index);
+                }
+                
+                // read the string as UTF-8 bytes.
+                byte[] encodedBytes = Encoding.UTF8.GetBytes(character);
+
+                // convert them into unicode bytes.
+                byte[] unicodeBytes = Encoding.Convert(Encoding.UTF8, Encoding.Unicode, encodedBytes);
+
+                string unicodeString = UnicodeBytesToString(unicodeBytes);
+                resultList.Add(unicodeString);
+
+                index++;
+            }
+
+            return resultList;
         }
 
         private List<string> EncodeCharactersToUnicode(List<string> originList)

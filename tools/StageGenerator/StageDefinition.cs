@@ -82,7 +82,7 @@ namespace StageGenerator
         }
 
         [JsonProperty(PropertyName = "uncovered_chars")]
-        public List<int> UncoveredCharacters
+        public HashSet<int> UncoveredCharacters
         {
             get; set;
         }
